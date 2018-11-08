@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="activity_Food">Food Nutrition Database</string>
+    <string name="activity_News">CBC News reader</string>
+    <string name="activity_Movie">Movie Information</string>
+    <string name="activity_Bus">OCTranspo Bus Route App</string>
 </resources>
