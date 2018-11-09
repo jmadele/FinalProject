@@ -4,6 +4,6 @@
     <string name="activity_News">CBC News reader</string>
     <string name="activity_Movie">Movie Information</string>
     <string name="activity_Bus">OCTranspo Bus Route App</string>
-    <string name="Help">Help</string>
+    <string name="Search">Search</string>
 
 </resources>
