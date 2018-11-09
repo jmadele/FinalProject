@@ -1,4 +1,15 @@
 package com.example.minjia.finalproject;
 
-class OCTranspo {
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class OCTranspo extends Activity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_octranspo);
+    }
+
 }
