@@ -23,5 +23,8 @@
     <string name="activity_Bus">OCTranspo Bus Route App</string>
     <string name="Search">Search</string>
     <string name="newsTitle"> CBC News Title</string>
+    <string name="food_nutrition">Food Nutrition</string>
+    <string name="search_food">Search Food</string>
+    <string name="progress_bar_food">Food Progress Bar</string>
 
 </resources>
