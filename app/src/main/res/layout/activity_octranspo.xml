@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativetLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OCTranspo">
+    android:background="@drawable/background_main"
+    android:id="@+id/transpoMainLayout"
+    tools:context="com.example.minjia.finalproject.OCTranspo">
+
+    <EditText
+        android:id="@+id/stationInput"
+        android:background="@drawable/background_inner"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="3dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="4"/>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:scaleType="center"
+        android:backgroundTint="#FFFFFF"/>
+
+
+
+
+    <ListView
+        android:layout_width="100dp"
+        android:id="@+id/stationsList"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_inner">
+    </ListView>
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -15,15 +50,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:visibility="visible"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_below="@id/routeRow"/>
+        style="?android:attr/progressBarStyleHorizontal"/>
 
-    <ListView
-        android:layout_width="100dp"
-        android:id="@+id/stationsList"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/background_inner"
-        >
-    </ListView>
-</android.support.constraint.ConstraintLayout>
+
+</RelativetLayout>
