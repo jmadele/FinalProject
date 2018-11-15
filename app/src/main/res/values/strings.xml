@@ -17,4 +17,11 @@
     <string name="movie_statistics">View Statistics</string>
     <string name="movie_import_download">DownLoad</string>
     <string name="movie_return">Go Back</string>
+    <string name="activity_Food">Food Nutrition Database</string>
+    <string name="activity_News">CBC News reader</string>
+    <string name="activity_Movie">Movie Information</string>
+    <string name="activity_Bus">OCTranspo Bus Route App</string>
+    <string name="Search">Search</string>
+    <string name="newsTitle"> CBC News Title</string>
+
 </resources>
