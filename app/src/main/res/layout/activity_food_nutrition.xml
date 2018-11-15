@@ -8,9 +8,9 @@
     tools:context=".FoodNutrition">
 
     <ImageView
+        android:id="@+id/FoodNutritionImage"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/FoodNutritionImage"
         android:layout_alignParentTop="true"
 
         />
@@ -20,38 +20,36 @@
         android:layout_height="match_parent" >
 
         <ListView
-            android:id="@+id/FoodNutritionView"
+            android:id="@+id/foodListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/searchfood"
-
-            android:layout_alignParentTop="true"
+            android:layout_above="@id/searchButton"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true">
-        </ListView>
+            android:layout_alignParentTop="true"/>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/searchEditText"
             android:layout_width="295dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/newsTitle"
+            android:layout_below="@+id/foodListView"
             android:inputType="text" />
+
         <Button
+            android:id="@+id/searchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@id/progressBar"
             android:layout_alignParentEnd="true"
-            android:text="@string/foodButton"
-            android:id="@+id/foodButton"
-            android:layout_above="@id/FoodNutritionProgressBar"/>
+            android:text="@string/search_food" />
 
         <ProgressBar
-            android:id="@+id/FoodNutritionProgressBar"
+            android:id="@+id/foodNutritionProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/progress_bar_food"
-            />
+            android:text="@string/progress_bar_food" />
     </RelativeLayout>
 </LinearLayout>

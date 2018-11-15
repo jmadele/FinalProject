@@ -25,14 +25,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -69,7 +67,7 @@ public class CBCNewsActivity extends Activity {
         progressBar.incrementProgressBy(5);
 
         //editText is used to store data
-        editText = findViewById(R.id.editText);
+        editText = findViewById(R.id.searchEditText);
         newsList = new ArrayList<>();
         newsList.add(0,"movie");
         newsList.add(1,"news");
@@ -91,7 +89,7 @@ public class CBCNewsActivity extends Activity {
                                    }
 
          });
-        myList = findViewById(R.id.newsTitle);
+        myList = findViewById(R.id.foodListView);
 
         ArrayAdapter<String> newsAdapter = new ArrayAdapter<String>
                 (this,android.R.layout.simple_list_item_2, android.R.id.text1,newsList );
@@ -121,7 +119,7 @@ public class CBCNewsActivity extends Activity {
             LayoutInflater inflater = CBCNewsActivity.this.getLayoutInflater();
             View resultView = null;
             resultView = inflater.inflate(R.layout.activity_news_title, null);
-            TextView txt = resultView.findViewById(R.id.newsTitle);
+            TextView txt = resultView.findViewById(R.id.foodListView);
             txt.setText(getItem(position));
             return resultView;
         }
