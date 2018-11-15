@@ -100,7 +100,7 @@ public class CBCNewsActivity extends Activity {
         myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                Toast.makeText(CBCNewsActivity.this, "You clicked on Item "+i +" : "+ newsList.get(i),Toast.LENGTH_LONG).show();
+                Toast.makeText(CBCNewsActivity.this, "item clicked: "+i +" "+ newsList.get(i),Toast.LENGTH_LONG).show();
             }
         });
        // CBCNewsImage = findViewById(R.id.CBCNewsImage);
