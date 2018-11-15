@@ -16,10 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".OCTranspo"></activity>
-        <activity android:name=".CBCNewsActivity"></activity>
-
+        <activity android:name=".Movie_detail" />
+        <activity android:name=".Movie_statistics" />
+        <activity android:name=".Movie" />
+        <activity android:name=".Movie_import" />
     </application>
 
 </manifest>
