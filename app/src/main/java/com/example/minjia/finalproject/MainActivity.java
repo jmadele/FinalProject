@@ -48,8 +48,8 @@ public class MainActivity extends Activity {
         Bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(MainActivity.this, OCTranspo.class);
-                startActivityForResult(intent, 50);*/
+                Intent intent = new Intent(MainActivity.this, OCTranspo.class);
+                startActivityForResult(intent, 50);
             }
         });
     }

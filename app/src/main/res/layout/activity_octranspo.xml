@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativetLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main"
-    android:id="@+id/transpoMainLayout"
-    tools:context="com.example.minjia.finalproject.OCTranspo">
+    tools:context="com.example.minjia.finalproject.OCTranspo"
+    >
 
     <EditText
         android:id="@+id/stationInput"
-        android:background="@drawable/background_inner"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:layout_marginTop="3dp"
+        android:background="@drawable/background_inner"
         android:ems="10"
         android:inputType="number"
-        android:maxLength="4"/>
+        android:maxLength="4"
+        android:textAlignment="center" />
 
     <Button
         android:id="@+id/submitButton"
@@ -25,32 +24,28 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_weight="1"
+        android:backgroundTint="#FFFFFF"
         android:clickable="true"
         android:elevation="10dp"
-        android:scaleType="center"
-        android:backgroundTint="#FFFFFF"/>
-
-
+        android:scaleType="center" />
 
 
     <ListView
-        android:layout_width="100dp"
         android:id="@+id/stationsList"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@drawable/background_inner">
-    </ListView>
+        android:background="@drawable/background_inner"/>
 
     <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleX="2.5"
-        android:scaleY="1.8"
-        android:id="@+id/progress"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:visibility="visible"
-        style="?android:attr/progressBarStyleHorizontal"/>
+        android:scaleX="2.5"
+        android:scaleY="1.8"
+        android:visibility="visible" />
 
-
-</RelativetLayout>
+</RelativeLayout>
