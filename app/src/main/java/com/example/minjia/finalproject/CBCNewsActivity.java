@@ -157,7 +157,6 @@ public class CBCNewsActivity extends Activity {
                 try {
                     //set up the connection and get input stream
                     url = new URL("https://www.cbc.ca/cmlink/rss-world");
-
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setReadTimeout(10000 /* milliseconds */);
                     conn.setConnectTimeout(15000 /* milliseconds */);
