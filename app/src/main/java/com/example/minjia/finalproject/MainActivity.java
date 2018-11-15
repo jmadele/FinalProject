@@ -51,14 +51,14 @@ public class MainActivity extends Activity {
 //                startActivityForResult(intent, 50);
 //            }
 //        });
-    movie_button=(Button) findViewById(R.id.MovieButton);
-    movie_button.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, Movie.class);
-            startActivity(intent);
-        }
-    });
+ //   movie_button=(Button) findViewById(R.id.MovieButton);
+ //   movie_button.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//            Intent intent = new Intent(MainActivity.this, Movie.class);
+//            startActivity(intent);
+//        }
+//    });
 
 
 
