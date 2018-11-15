@@ -10,12 +10,20 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private static final String ACTIVITY_NAME ="MainActivity";
-
+    Button movie_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+    movie_button=(Button) findViewById(R.id.MovieButton);
+    movie_button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, Movie.class);
+            startActivity(intent);
+        }
+    });
 //        final Button Food = findViewById(R.id.foodButton);
 //        Food.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -43,15 +51,18 @@ public class MainActivity extends Activity {
 //                startActivityForResult(intent, 50);
 //            }
 //        });
+    movie_button=(Button) findViewById(R.id.MovieButton);
+    movie_button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, Movie.class);
+            startActivity(intent);
+        }
+    });
 
-        final Button Bus = findViewById(R.id.BusButton);
-        Bus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, OCTranspo.class);
-                startActivityForResult(intent, 50);
-            }
-        });
+
+
+
     }
 
     public void onActivityResult ( int requestCode, int responseCode, Intent data){
