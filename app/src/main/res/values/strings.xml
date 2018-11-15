@@ -1,11 +1,29 @@
 
 <resources>
-    <string name="app_name">CST2355 Final Project</string>
+    <string name="app_name">FinalProject</string>
+    <string name="movie_detail_title">Movie Title: </string>
+    <string name="movie_detail_actor">Main Actors:</string>
+    <string name="movie_detail_year">Year: </string>
+    <string name="movie_detail_rating">Rating: </string>
+    <string name="movie_detail_runtime">Run Time: </string>
+    <string name="movie_detail_plot">Plot: </string>
+    <string name="movie_detail_url">URL: </string>
+    <string name="movie_detail_save">Save</string>
+    <string name="movie_detail_cancel">Cancel</string>
+    <string name="movie_detail_delete">Delete</string>
+    <string name="movie_statistics_longest">Longest Run Time: </string>
+    <string name="movie_statistics_shortest">Shortest Run Time: </string>
+    <string name="movie_statistics_average">Average Run Time: </string>
+    <string name="movie_add">Add movie</string>
+    <string name="movie_statistics">View Statistics</string>
+    <string name="movie_import_download">DownLoad</string>
+    <string name="movie_return">Go Back</string>
     <string name="activity_Food">Food Nutrition Database</string>
     <string name="activity_News">CBC News reader</string>
     <string name="activity_Movie">Movie Information</string>
     <string name="activity_Bus">OCTranspo Bus Route App</string>
     <string name="Search">Search</string>
+    <string name="newsTitle"> CBC News Title</string>
 
     <!-- octranspo strings -->
     <string name="title_activity_main">MainActivity</string>
