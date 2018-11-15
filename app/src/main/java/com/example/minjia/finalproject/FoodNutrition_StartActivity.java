@@ -24,7 +24,7 @@ public class FoodNutrition_StartActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_nutrition);
+        setContentView(R.layout.activity_food_nutrition_start_activity);
         Log.i(ACTIVITY_NAME, "In onCreate()");
 
         foodNutritionProgressBar = findViewById(R.id.foodNutritionProgressBar);
