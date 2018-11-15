@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".CBCNewsActivity"></activity>
-        <activity android:name=".FoodNutrition"></activity>
+        <activity android:name=".FoodNutrition_StartActivity"></activity>
     </application>
 
 </manifest>
