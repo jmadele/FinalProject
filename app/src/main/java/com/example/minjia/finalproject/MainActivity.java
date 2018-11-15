@@ -25,15 +25,6 @@ public class MainActivity extends Activity {
 //            }
 //        });
 
-        final Button News = findViewById(R.id.NewsButton);
-        News.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CBCNewsActivity.class);
-                startActivityForResult(intent, 50);
-            }
-        });
-
 //
 //        final Button Movie = findViewById(R.id.MovieButton);
 //        Movie.setOnClickListener(new View.OnClickListener() {
@@ -44,14 +35,14 @@ public class MainActivity extends Activity {
 //            }
 //        });
 
-        final Button Bus = findViewById(R.id.BusButton);
-        Bus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, OCTranspo.class);
-                startActivityForResult(intent, 50);
-            }
-        });
+//        final Button Bus = findViewById(R.id.BusButton);
+//        Bus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, OCTranspo.class);
+//                startActivityForResult(intent, 50);
+//            }
+//        });
     }
 
     public void onActivityResult ( int requestCode, int responseCode, Intent data){

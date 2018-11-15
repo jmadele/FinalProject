@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/CBCNewsImage"
+        android:id="@+id/FoodNutritionImage"
         android:layout_alignParentTop="true"
 
         />
@@ -20,7 +20,7 @@
         android:layout_height="match_parent" >
 
         <ListView
-            android:id="@+id/newsTitle"
+            android:id="@+id/FoodNutritionView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/searchfood"
@@ -41,12 +41,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="@string/search_food"
-            android:id="@+id/searchfood"
-            android:layout_above="@id/progressBar"/>
+            android:text="@string/foodButton"
+            android:id="@+id/foodButton"
+            android:layout_above="@id/FoodNutritionProgressBar"/>
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/FoodNutritionProgressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
