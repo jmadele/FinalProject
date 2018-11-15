@@ -36,6 +36,7 @@ public class Movie extends Activity{
         movieDB = movieDatabaseHelper.getWritableDatabase();
         movieListV = (ListView)findViewById(R.id.movie_listView);
         movieListV.setAdapter(movieAdapter);
+        statisticsButton = (Button)findViewById(R.id.movie_statistics);
 
         statisticsButton.setOnClickListener(new View.OnClickListener(){
             @Override
