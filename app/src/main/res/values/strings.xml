@@ -34,6 +34,7 @@
     <string name="version">Version</string>
     <string name="transpoTitle">OC Transpo Bus Routes App</string>
     <string name="enterStation">Enter Station Number</string>
+    <string name="submitButton">Submit</string>
     <string name="busRoutes">Bus Routes:</string>
     <string name="viewBusRoutes">View Bus Routes</string>
     <string name="cancel">Cancel</string>
@@ -55,7 +56,8 @@
                     Finally, please choose a bus for more detailed information
                     (destination, start time, etc.)</string>
 
-
+    <string name="search_food">searching:</string>
+    <string name="progress_bar_food">bar:</string>
     <!-- movie strings -->
 
 
