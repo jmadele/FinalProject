@@ -1,8 +1,10 @@
 package com.example.minjia.finalproject;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +13,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.support.design.widget.Snackbar;
 
-public class FoodNutrition_StartActivity extends Activity {
+public class FoodNutrition_StartActivity extends AppCompatActivity {
 
     private static final String ACTIVITY_NAME = "Food Nutrition Activity";
     private ProgressBar foodNutritionProgressBar;
@@ -20,7 +23,13 @@ public class FoodNutrition_StartActivity extends Activity {
     private EditText searchEditText;
     private ListView foodListView;
     private Button searchButton;
+    private Dialog foodNutritionDialog;
 
+
+    /**
+     * Called on activity start. Provides content view, loads resources and sets button functions.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,21 +40,24 @@ public class FoodNutrition_StartActivity extends Activity {
         foodNutritionImage = findViewById(R.id.foodNutritionImage);
         searchEditText = findViewById(R.id.searchEditText);
         foodListView = findViewById(R.id.foodListView);
+        foodNutritionProgressBar = findViewById(R.id.progress);
+        foodNutritionImage = findViewById(R.id.foodNutritionImage);
 
         /**
          * Create a button for searches
          */
-        searchButton = findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FoodNutrition_StartActivity.this,
-                        FoodNutrition_ListItemsActivity.class);
-                startActivityForResult(intent, 50);
-            }
 
-        });
+        Toast.makeText(this,"searching", Toast.LENGTH_SHORT).show();
+
+        searchButton.setOnClickListener(e ->{
+                    Snackbar.make(e, "submitting", Snackbar.LENGTH_LONG).show();
+
     }
+            //public void onClick(View v) {
+                //Intent intent = new Intent(FoodNutrition_StartActivity.this,
+                //        FoodNutrition_ListItemsActivity.class);
+                //startActivityForResult(intent, 50);
+            //}
 
     @Override
     public void onActivityResult(int requestCode,int responseCode, Intent data){
