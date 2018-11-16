@@ -52,19 +52,18 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
          * Create a button for searches
          */
 
-        //Toast.makeText(this,"searching", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"searching", Toast.LENGTH_SHORT).show();
 
-        //   searchButton.setOnClickListener(e -> {
-        //     Snackbar.make(e, "submitting", Snackbar.LENGTH_LONG).show();
+           searchButton.setOnClickListener(e ->
+             Snackbar.make(e, "submitting", Snackbar.LENGTH_LONG).show() );
+
+        //searchButton.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //       Context context = getApplicationContext();
+        //        Toast.makeText(context, "In searching", Toast.LENGTH_SHORT).show();
+        //    }
         //});
-
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Context context = getApplicationContext();
-                Toast.makeText(context, "In searching", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 }
