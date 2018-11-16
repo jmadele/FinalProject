@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         Food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FoodNutrition.class);
+                Intent intent = new Intent(MainActivity.this, FoodNutrition_StartActivity.class);
                 startActivityForResult(intent, 50);
             }
         });
@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 50);
             }
         });
+
 
         final Button Movie = findViewById(R.id.MovieButton);
         Movie.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +48,8 @@ public class MainActivity extends Activity {
         Bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(MainActivity.this, OCTranspo.class);
-                startActivityForResult(intent, 50);*/
+                Intent intent = new Intent(MainActivity.this, OCTranspo.class);
+                startActivityForResult(intent, 50);
             }
         });
     }
