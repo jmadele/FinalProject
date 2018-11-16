@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -80,11 +81,20 @@ public class OCTranspo extends AppCompatActivity {
 
         busImage = findViewById(R.id.busImg);
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("A dialog")
+                .setPositiveButton("Hello", new DialogInterface.OnClickListener() {
+         @Override
+            public void onClick(DialogInterface dialog, int which) {
+             Toast.makeText(getApplicationContext(), "You clicked on ...", Toast.LENGTH_SHORT).show();
+             }
+        }).create().show();
+
 
         Toast.makeText(this,"searching", Toast.LENGTH_SHORT).show();
 
         submitButton.setOnClickListener(e ->{
-        Snackbar.make(e, "submitting", Snackbar.LENGTH_LONG).show();
+         Snackbar.make(e, "submitting", Snackbar.LENGTH_LONG).show();
 
 
     });

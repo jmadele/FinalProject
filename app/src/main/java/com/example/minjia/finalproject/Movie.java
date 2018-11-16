@@ -1,7 +1,9 @@
 package com.example.minjia.finalproject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,6 +29,7 @@ public class Movie extends Activity{
     MovieAdapter movieAdapter;
     SQLiteDatabase movieDB;
     Cursor cursor;
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,15 @@ public class Movie extends Activity{
         movieListV.setAdapter(movieAdapter);
         statisticsButton = (Button)findViewById(R.id.movie_statistics);
 
+        btn = findViewById(R.id.addMovie);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = getApplicationContext();
+                Toast.makeText(context,"In searching movie...message",Toast.LENGTH_SHORT).show();
+            }});
+
+
         statisticsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -45,7 +58,18 @@ public class Movie extends Activity{
             startActivity(intent);
             }
         });
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("A dialog")
+                .setPositiveButton("Hello", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "You clicked on ...", Toast.LENGTH_SHORT).show();
+                    }
+                }).create().show();
+
     }
+
 
  private class MovieAdapter extends ArrayAdapter<String>{
         public MovieAdapter(Context ctx){super(ctx,0);}

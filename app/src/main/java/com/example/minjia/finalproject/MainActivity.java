@@ -55,12 +55,12 @@ public class MainActivity extends Activity {
         Movie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(MainActivity.this, MovieInfo.class);
-                startActivityForResult(intent, 50);*/
+                Intent intent = new Intent(MainActivity.this, Movie.class);
+                startActivityForResult(intent, 50);
             }
         });
-//
-//        final Button Movie = findViewById(R.id.MovieButton);
+
+ //       final Button Movie = findViewById(R.id.MovieButton);
 //        Movie.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -68,8 +68,8 @@ public class MainActivity extends Activity {
 //                startActivityForResult(intent, 50);
 //            }
 //        });
- //   movie_button=(Button) findViewById(R.id.MovieButton);
- //   movie_button.setOnClickListener(new View.OnClickListener() {
+//    Movie=(Button) findViewById(R.id.MovieButton);
+//    Movie.setOnClickListener(new View.OnClickListener() {
 //        @Override
 //        public void onClick(View v) {
 //            Intent intent = new Intent(MainActivity.this, Movie.class);
