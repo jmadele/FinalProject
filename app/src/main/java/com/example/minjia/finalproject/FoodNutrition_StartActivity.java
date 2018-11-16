@@ -46,7 +46,7 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
         foodListView = findViewById(R.id.foodListView);
         foodNutritionProgressBar = findViewById(R.id.progress);
         foodNutritionImage = findViewById(R.id.foodNutritionImage);
-        //foodNutritionToolBar = findViewById(R.id.foodNutritionToolBar);
+        searchButton = findViewById(R.id.searchButton);
 
         /**
          * Create a button for searches
