@@ -5,17 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".FoodNutrition">
+    tools:context=".FoodNutrition_StartActivity">
 
     <ImageView
-        android:id="@+id/FoodNutritionImage"
+        android:id="@+id/foodNutritionImage"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/food_nutrition"
 
+        />
     <RelativeLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
         <ListView
             android:id="@+id/foodListView"
@@ -49,5 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="@string/progress_bar_food" />
+
+
     </RelativeLayout>
 </LinearLayout>
