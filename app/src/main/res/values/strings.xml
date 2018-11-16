@@ -1,3 +1,4 @@
+
 <resources>
     <string name="app_name">FinalProject</string>
     <string name="movie_detail_title">Movie Title: </string>
@@ -23,5 +24,45 @@
     <string name="activity_Bus">OCTranspo Bus Route App</string>
     <string name="Search">Search</string>
     <string name="newsTitle"> CBC News Title</string>
+
+    <!-- octranspo strings -->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="help">Help</string>
+    <string name="ok">Ok</string>
+    <string name="about">About</string>
+    <string name="myName">Created by: Xinji Zhu</string>
+    <string name="version">Version</string>
+    <string name="transpoTitle">OC Transpo Bus Routes App</string>
+    <string name="enterStation">Enter Station Number</string>
+    <string name="submitButton">Submit</string>
+    <string name="busRoutes">Bus Routes:</string>
+    <string name="viewBusRoutes">View Bus Routes</string>
+    <string name="cancel">Cancel</string>
+    <string name="numStations">Number of stations stored in Database:</string>
+    <string name="viewRoutes">View Routes</string>
+    <string name="transpoAppDesc">OC Transpo Route Info selected\n\n View destination, latitude,
+                    longitude, gps speed, start time and adjusted schedule time.</string>
+    <string name="helpInfo">This app includes 4 seperate activities, choose 1 to see description,
+                    then hit the launch button to start.</string>
+    <string name="delete">Delete</string>
+    <string name="stationnum">Station Number</string>
+    <string name="station">Station</string>
+    <string name="howTo">How to use the application</string>
+    <string name="statistics">Statistics</string>
+    <string name="stations">Stations:</string>
+    <string name="transpoinst">To start, please enter a 4 digit bus station number.
+                    This number will be saved and appear in your list to choose from.
+                    Then choose a station number for a list of bus routes from that station.
+                    Finally, please choose a bus for more detailed information
+                    (destination, start time, etc.)</string>
+
+    <string name="search_food">searching:</string>
+    <string name="progress_bar_food">bar:</string>
+    <!-- movie strings -->
+
+
+    <!-- cbcnews strings -->
+
+
 
 </resources>
