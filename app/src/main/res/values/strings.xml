@@ -50,7 +50,9 @@
     <string name="helpInfo">This app includes 4 seperate activities, choose 1 to see description,
                     then hit the launch button to start.</string>
     <string name="delete">Delete</string>
-    <string name="stationnum">Station Number</string>
+    <string name="food_nutrition">Food Nutrition</string>
+
+
     <string name="station">Station</string>
     <string name="howTo">How to use the application</string>
     <string name="statistics">Statistics</string>
@@ -61,6 +63,8 @@
                     Finally, please choose a bus for more detailed information
                     (destination, start time, etc.)</string>
 
+    <string name="search_food">searching:</string>
+    <string name="progress_bar_food">bar:</string>
     <!-- movie strings -->
 
 
