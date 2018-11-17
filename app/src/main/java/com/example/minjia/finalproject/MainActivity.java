@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
         Food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FoodNutrition.class);
+                Intent intent = new Intent(MainActivity.this, FoodNutrition_StartActivity.class);
                 startActivityForResult(intent, 50);
             }
         });
