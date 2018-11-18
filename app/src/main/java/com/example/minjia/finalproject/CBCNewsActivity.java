@@ -1,7 +1,9 @@
 package com.example.minjia.finalproject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -10,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
@@ -78,17 +81,30 @@ public class CBCNewsActivity extends Activity {
         //initiate btn and perform click event on Search button
         btn = findViewById(R.id.Search);
         btn.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View view) {
-              Context context = getApplicationContext();
-               Toast.makeText(context,"In searching...message",Toast.LENGTH_SHORT).show();
+
+          @Override
+            public void onClick(View view) {
+               Context context = getApplicationContext();
+               Toast.makeText(context,"In searching news...message",Toast.LENGTH_SHORT).show();
+
 //              String text = editText.getText().toString();
 //              newsList.add(text);
 //              newsAdapter.notifyDataSetChanged();
 //              editText.setText("");
-                                   }
+             }
 
          });
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("A dialog")
+                .setPositiveButton("Hello", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "You clicked on ...", Toast.LENGTH_SHORT).show();
+                    }
+                }).create().show();
+
         myList = findViewById(R.id.foodListView);
 
         ArrayAdapter<String> newsAdapter = new ArrayAdapter<String>
@@ -157,6 +173,7 @@ public class CBCNewsActivity extends Activity {
                 try {
                     //set up the connection and get input stream
                     url = new URL("https://www.cbc.ca/cmlink/rss-world");
+
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setReadTimeout(10000 /* milliseconds */);
                     conn.setConnectTimeout(15000 /* milliseconds */);
@@ -175,17 +192,18 @@ public class CBCNewsActivity extends Activity {
 
                     while(parser.next()!=XmlPullParser.END_DOCUMENT){
                         //if the current event isn't a start_tag, it throws an exception
-                        if(parser.getEventType()!= XmlPullParser.START_TAG){
-                            throw new IllegalStateException();
-                        }
+                        if(parser.getEventType()== XmlPullParser.START_TAG){
 
-                        if(parser.getName().equals("channel")) {
-                            iconName = parser.getAttributeValue(null, "icon");
-                        }
-                        if(parser.getName().equals("title")){
-                            type = parser.getAttributeValue(null,"story");
-                            publishProgress(50);
-                            SystemClock.sleep(500);
+
+
+                            if(parser.getName().equals("channel")) {
+                                iconName = parser.getAttributeValue(null, "icon");
+                            }
+                            if(parser.getName().equals("title")){
+                                type = parser.getAttributeValue(null,"story");
+                                publishProgress(50);
+                                SystemClock.sleep(500);
+                            }
                         }
 
                     }
