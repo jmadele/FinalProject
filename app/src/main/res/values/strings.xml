@@ -21,7 +21,7 @@
     <string name="activity_News">CBC News reader</string>
     <string name="activity_Movie">Movie Information</string>
     <string name="activity_Bus">OCTranspo Bus Route App</string>
-    <string name="Search">Search</string>
+    <string name="SearchNews">Search CBC News</string>
     <string name="newsTitle"> CBC News Title</string>
 
     <!-- octranspo strings -->

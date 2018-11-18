@@ -12,7 +12,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
@@ -49,9 +48,9 @@ public class CBCNewsActivity extends Activity {
     private EditText editText;
     private Button btn;
     private Button progressBtn;
-    private TextView typeText;
+    private TextView newsText;
 
-    private ListView myList;
+    private ListView myNewsList;
     //variable newsList: stores search results
     private ArrayList<String> newsList;
 
@@ -62,7 +61,7 @@ public class CBCNewsActivity extends Activity {
         setContentView(R.layout.activity_cbcnews);
         //instantiate the progress bar and set it as visible
         // set the progressBar as Indeterminate, only for testing
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.News_progressBar);
         progressBar.setVisibility(View.VISIBLE);
         progressBar.setMax(100);
         progressBar.setBackgroundColor(Color.RED);
@@ -70,7 +69,7 @@ public class CBCNewsActivity extends Activity {
         progressBar.incrementProgressBy(5);
 
         //editText is used to store data
-        editText = findViewById(R.id.searchEditText);
+        editText = findViewById(R.id.NewsEditText);
         newsList = new ArrayList<>();
         newsList.add(0,"movie");
         newsList.add(1,"news");
@@ -79,19 +78,17 @@ public class CBCNewsActivity extends Activity {
 
         //final NewsAdapter newsAdapter = new NewsAdapter(this);
         //initiate btn and perform click event on Search button
-        btn = findViewById(R.id.Search);
+        btn = findViewById(R.id.SearchNews);
         btn.setOnClickListener(new View.OnClickListener() {
-
-          @Override
-            public void onClick(View view) {
-               Context context = getApplicationContext();
-               Toast.makeText(context,"In searching news...message",Toast.LENGTH_SHORT).show();
-
+                                   @Override
+                                   public void onClick(View view) {
+              Context context = getApplicationContext();
+               Toast.makeText(context,"In searching...message",Toast.LENGTH_SHORT).show();
 //              String text = editText.getText().toString();
 //              newsList.add(text);
 //              newsAdapter.notifyDataSetChanged();
 //              editText.setText("");
-             }
+                                   }
 
          });
 
@@ -105,13 +102,14 @@ public class CBCNewsActivity extends Activity {
                     }
                 }).create().show();
 
-        myList = findViewById(R.id.foodListView);
+
+        myNewsList = findViewById(R.id.NewsTitleView);
 
         ArrayAdapter<String> newsAdapter = new ArrayAdapter<String>
                 (this,android.R.layout.simple_list_item_2, android.R.id.text1,newsList );
-        myList.setAdapter(newsAdapter);
+        myNewsList.setAdapter(newsAdapter);
 
-        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        myNewsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
                 Toast.makeText(CBCNewsActivity.this, "item clicked: "+i +" "+ newsList.get(i),Toast.LENGTH_LONG).show();
@@ -135,7 +133,7 @@ public class CBCNewsActivity extends Activity {
             LayoutInflater inflater = CBCNewsActivity.this.getLayoutInflater();
             View resultView = null;
             resultView = inflater.inflate(R.layout.activity_news_title, null);
-            TextView txt = resultView.findViewById(R.id.foodListView);
+            TextView txt = resultView.findViewById(R.id.NewsTitleView);
             txt.setText(getItem(position));
             return resultView;
         }
@@ -173,7 +171,6 @@ public class CBCNewsActivity extends Activity {
                 try {
                     //set up the connection and get input stream
                     url = new URL("https://www.cbc.ca/cmlink/rss-world");
-
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setReadTimeout(10000 /* milliseconds */);
                     conn.setConnectTimeout(15000 /* milliseconds */);
@@ -192,20 +189,18 @@ public class CBCNewsActivity extends Activity {
 
                     while(parser.next()!=XmlPullParser.END_DOCUMENT){
                         //if the current event isn't a start_tag, it throws an exception
-                        if(parser.getEventType()== XmlPullParser.START_TAG){
+                        if(parser.getEventType()== XmlPullParser.START_TAG) {
 
 
-
-                            if(parser.getName().equals("channel")) {
+                            if (parser.getName().equals("channel")) {
                                 iconName = parser.getAttributeValue(null, "icon");
                             }
-                            if(parser.getName().equals("title")){
-                                type = parser.getAttributeValue(null,"story");
+                            if (parser.getName().equals("title")) {
+                                type = parser.getAttributeValue(null, "story");
                                 publishProgress(50);
                                 SystemClock.sleep(500);
                             }
                         }
-
                     }
                     conn.disconnect();
                     String imageFile = iconName + ".png";
@@ -253,7 +248,7 @@ public class CBCNewsActivity extends Activity {
         @Override
         public void onPostExecute(String result) {
             super.onPostExecute(result);
-            typeText.setText("type of the news is" + type);
+            newsText.setText("type of the news is" + type);
             Log.i(ACTIVITY_NAME,result);
             progressBar.setVisibility(View.INVISIBLE);
 
