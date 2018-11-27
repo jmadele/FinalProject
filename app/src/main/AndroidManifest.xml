@@ -15,18 +15,13 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        
         <activity android:name=".FoodNutrition_StartActivity" />
-        <activity android:name=".FoodNutrition_ListItemsActivity"></activity>
-
-        <activity android:name=".CBCNewsActivity"></activity>
-      
-        <activity android:name=".OCTranspo" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
+        <activity android:name=".FoodNutrition_ListItemsActivity" />
+        <activity android:name=".FoodNutrition_SearchFood"></activity>
     </application>
 
 </manifest>

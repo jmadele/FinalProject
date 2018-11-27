@@ -21,4 +21,11 @@
     <string name="food_nutrition">食品营养</string>
     <string name="search_food">搜索食物</string>
     <string name="progress_bar_food">食物进度条</string>
+    <string name="activity_Food">食物营养数据库</string>
+    <string name="activity_News">CBC News reader</string>
+    <string name="activity_Movie">Movie Information</string>
+    <string name="activity_Bus">OCTranspo Bus Route App</string>
+    <string name="Search">Search</string>
+    <string name="newsTitle"> CBC News Title</string>
+
 </resources>

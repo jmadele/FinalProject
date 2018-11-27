@@ -11,9 +11,7 @@
         android:id="@+id/foodNutritionImage"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentTop="true"
         android:src="@drawable/food_nutrition"
-
         />
     <RelativeLayout
         android:id="@+id/bottomLayout"
