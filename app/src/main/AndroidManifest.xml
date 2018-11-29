@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FoodNutrition_StartActivity" />
+        <activity android:name=".FoodNutrition_StartActivity"
+            style = "AppTheme"/>
         <activity android:name=".FoodNutrition_ListItemsActivity" />
         <activity android:name=".FoodNutrition_SearchFood"></activity>
     </application>

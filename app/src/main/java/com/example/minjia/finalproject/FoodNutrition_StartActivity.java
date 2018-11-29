@@ -26,6 +26,7 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
     private ListView foodListView;
     private Button searchButton;
     private Dialog foodNutritionDialog;
+    final int SEARCH_REQUEST=6;
     //private Toolbar foodNutritionToolBar;
 
 
@@ -46,6 +47,7 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
         foodListView = findViewById(R.id.foodListView);
         foodNutritionProgressBar = findViewById(R.id.progress);
         foodNutritionImage = findViewById(R.id.foodNutritionImage);
+        searchButton = findViewById(R.id.searchButton);
         //foodNutritionToolBar = findViewById(R.id.foodNutritionToolBar);
 
         /**
@@ -53,9 +55,14 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
          */
 
         Toast.makeText(this,"searching", Toast.LENGTH_SHORT).show();
-
-           searchButton.setOnClickListener(e ->
-             Snackbar.make(e, "submitting", Snackbar.LENGTH_LONG).show() );
+//
+           searchButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent intent = new Intent(FoodNutrition_StartActivity.this, FoodNutrition_SearchFood.class);
+                   startActivityForResult(intent, SEARCH_REQUEST);
+               }
+           });
 
         //searchButton.setOnClickListener(new View.OnClickListener() {
         //    @Override

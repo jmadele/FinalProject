@@ -1,5 +1,19 @@
 <resources>
     <string name="app_name">FinalProject</string>
+
+    
+    <string name="food_nutrition">食品营养</string>
+    <string name="search_food">搜索食物</string>
+    <string name="progress_bar_food">食物进度条</string>
+    <string name="activity_Food">食物营养数据库</string>
+    <string name="minCalories">最低卡路里</string>
+    <string name="maxCalories">最高卡路里</string>
+    <string name="averageCalories">平均卡路里</string>
+    <string name="totalCalories">总卡路里</string>
+    <string name="foodID">食品编号</string>
+    <string name="foodName">食品名称</string>
+    <string name="foodImage">食品图片</string>
+
     <string name="movie_detail_title">Movie Title: </string>
     <string name="movie_detail_actor">Main Actors:</string>
     <string name="movie_detail_year">Year: </string>
@@ -17,15 +31,11 @@
     <string name="movie_statistics">View Statistics</string>
     <string name="movie_import_download">DownLoad</string>
     <string name="movie_return">Go Back</string>
-    
-    <string name="food_nutrition">食品营养</string>
-    <string name="search_food">搜索食物</string>
-    <string name="progress_bar_food">食物进度条</string>
-    <string name="activity_Food">食物营养数据库</string>
     <string name="activity_News">CBC News reader</string>
     <string name="activity_Movie">Movie Information</string>
     <string name="activity_Bus">OCTranspo Bus Route App</string>
     <string name="Search">Search</string>
     <string name="newsTitle"> CBC News Title</string>
+
 
 </resources>

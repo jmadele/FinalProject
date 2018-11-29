@@ -24,8 +24,15 @@
     <string name="Search">Search</string>
     <string name="newsTitle"> CBC News Title</string>
     <string name="food_nutrition">Food Nutrition</string>
-    <string name="search_food">搜索食物</string>
-    <string name="progress_bar_food">食物进度条</string>
+    <string name="search_food">Search Food</string>
+    <string name="progress_bar_food">Food Progress Bar</string>
+    <string name="minCalories">Min Calories</string>
+    <string name="maxCalories">Max Calories</string>
+    <string name="averageCalories">Average Calories</string>
+    <string name="totalCalories">Total Calories</string>
+    <string name="foodID">Food ID</string>
+    <string name="foodName">Food Name</string>
+    <string name="foodImage">Food Image</string>
 
     <!-- octranspo strings -->
     <string name="title_activity_main">MainActivity</string>
@@ -57,6 +64,7 @@
                     Then choose a station number for a list of bus routes from that station.
                     Finally, please choose a bus for more detailed information
                     (destination, start time, etc.)</string>
+
 
     <!-- movie strings -->
 
