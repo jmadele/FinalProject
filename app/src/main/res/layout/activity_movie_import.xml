@@ -5,117 +5,222 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Movie_import">
+    tools:context=".Movie_import"
+    android:layout_marginRight="10dp">
 
- <RelativeLayout
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content">
-
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_title"
-         android:text="@string/movie_detail_title"/>
-     <EditText
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_title_value"
-         android:layout_alignRight="@id/movie_detail_title"/>
-
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_actor"
-         android:layout_below="@id/movie_detail_title"
-         android:layout_marginTop="2dp"
-         android:text="@string/movie_detail_actor"/>
-     <EditText
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@id/movie_detail_title_value"
-         android:id="@+id/movie_detail_actor_value"/>
-
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_year"
-         android:text="@string/movie_detail_year"
-         android:layout_marginTop="2dp"
-         android:layout_below="@id/movie_detail_actor"/>
-     <EditText
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_year_value"
-         android:layout_below="@id/movie_detail_actor_value"/>
-
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="@string/movie_detail_rating"
-         android:layout_below="@id/movie_detail_year"
-         android:layout_marginTop="2dp"
-         android:id="@+id/movie_detail_rating"/>
-     <EditText
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_below="@id/movie_detail_year_value"
-         android:id="@+id/movie_detail_rating_value"/>
-
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_runtime"
-         android:layout_marginTop="2dp"
-         android:layout_below="@id/movie_detail_rating"
-         android:text="@string/movie_detail_runtime"/>
-     <EditText
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_runtime_value"
-         android:layout_below="@id/movie_detail_rating_value"/>
-
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_plot"
-         android:text="@string/movie_detail_plot"
-         android:layout_marginTop="2dp"
-         android:layout_below="@id/movie_detail_runtime"/>
-     <EditText
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_plot_value"
-         android:layout_below="@id/movie_detail_runtime_value"/>
-
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_url"
-         android:layout_marginTop="2dp"
-         android:text="@string/movie_detail_url"
-         android:layout_below="@id/movie_detail_plot"/>
-     <EditText
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/movie_detail_url_value"
-         android:layout_below="@id/movie_detail_plot_value"/>
- </RelativeLayout>
-
-    <Button
-        android:id="@+id/movie_import_cancel"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="12dp"
-        android:layout_marginLeft="12dp"
-        android:text="@string/movie_detail_cancel" />
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_searchTitle"
+            android:hint="Enter Title" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movie_searchButton"
+            android:text="@string/Search" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/movie_import_download"
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:orientation="horizontal"
+        android:id="@+id/movie_impot_layout1"
+        android:visibility="invisible">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/movie_image"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/movie_detail_title"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:text="@string/movie_detail_title" />
+            <TextView
+                android:id="@+id/movie_detail_title_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/movie_detail_year"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:text="@string/movie_detail_year" />
+            <TextView
+                android:id="@+id/movie_detail_year_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/movie_detail_rating"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:text="@string/movie_detail_rating" />
+            <TextView
+                android:id="@+id/movie_detail_rating_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/movie_detail_runtime"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:text="@string/movie_detail_runtime" />
+            <TextView
+                android:id="@+id/movie_detail_runtime_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginLeft="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:text="@string/movie_import_download" />
+        android:orientation="horizontal"
+        android:id="@+id/movie_import_layout2"
+        android:visibility="invisible"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/movie_detail_actor"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:text="@string/movie_detail_actor" />
+        <TextView
+            android:id="@+id/movie_detail_actor_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/movie_import_layout3"
+        android:visibility="invisible"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/movie_detail_plot"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:text="@string/movie_detail_plot" />
+
+        <TextView
+            android:id="@+id/movie_detail_plot_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/movie_import_layout4"
+        android:visibility="invisible"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp">
+        <TextView
+            android:id="@+id/movie_detail_url"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:text="@string/movie_detail_url" />
+        <TextView
+            android:id="@+id/movie_detail_url_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp">
+
+        <Button
+            android:id="@+id/movie_import_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/movie_detail_cancel" />
+
+        <Button
+            android:id="@+id/movie_import_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:visibility="invisible"
+            android:layout_toRightOf="@+id/movie_import_cancel"
+            android:text="@string/movie_import_download" />
+    </RelativeLayout>
+
     <ProgressBar
         android:id="@+id/movie_progressBar"
         style="?android:attr/progressBarStyleHorizontal"

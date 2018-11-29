@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Movie_statistics">
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:text="@string/movie_statistics" />
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="30dp">
     <TextView
         android:id="@+id/movie_shortest"
         android:layout_width="wrap_content"
@@ -13,60 +27,150 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:text="@string/movie_statistics_shortest" />
 
-    <EditText
+    <TextView
         android:id="@+id/movie_shortest_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/movie_shortest"
         android:layout_marginStart="39dp"
-        android:layout_marginTop="36dp" />
+        android:layout_marginTop="30dp" />
+</RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
     <TextView
         android:id="@+id/movie_longest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/movie_statistics_longest"
-        android:layout_below="@id/movie_shortest"/>
+        android:layout_marginTop="30dp"
+        android:text="@string/movie_statistics_longest"/>
 
-    <EditText
+    <TextView
         android:id="@+id/movie_longest_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="39dp"
-        android:layout_marginTop="36dp"
-        android:layout_below="@id/movie_shortest_value"
+        android:layout_marginTop="30dp"
         android:layout_toEndOf="@+id/movie_longest"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/movie_avgRuntime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="12dp"
+            android:text="@string/movie_statistics_average" />
+
+        <TextView
+            android:id="@+id/movie_avgRuntime_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/movie_avgRuntime"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="26dp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
+    <TextView
+        android:id="@+id/movie_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/movie_statistics_new" />
 
     <TextView
-        android:id="@+id/movie_avgRuntime"
+        android:id="@+id/movie_new_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/movie_longest"
-        android:layout_marginTop="36dp"
-        android:layout_marginStart="12dp"
-        android:text="@string/movie_statistics_average" />
-
-    <EditText
-        android:id="@+id/movie_avgRuntime_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/movie_longest_value"
-        android:layout_toEndOf="@+id/movie_avgRuntime"
+        android:layout_toEndOf="@+id/movie_new"
         android:layout_marginStart="34dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="26dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/movie_old"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="12dp"
+            android:text="@string/movie_statistics_old" />
+
+        <TextView
+            android:id="@+id/movie_old_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/movie_old"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="26dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/movie_avgY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="12dp"
+            android:text="@string/movie_statistics_averageY" />
+
+        <TextView
+            android:id="@+id/movie_avgY_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/movie_avgY"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="26dp" />
+    </RelativeLayout>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/movie_return"
-        android:text="@string/movie_return"
-        android:layout_alignParentBottom="true"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:id="@+id/button_statistics"
+        android:text="OK"/>
 
-</RelativeLayout>
+
+</LinearLayout>

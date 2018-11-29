@@ -4,15 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/movie_layout"
     tools:context=".Movie">
 
-<android.support.v7.widget.Toolbar
+    <android.support.v7.widget.Toolbar
     android:layout_width="match_parent"
-    android:layout_height="match_parent"></android.support.v7.widget.Toolbar>
+    android:layout_height="?attr/actionBarSize"
+     android:elevation="15dp"
+    android:id="@+id/movie_tollBar" >
+    </android.support.v7.widget.Toolbar>
 
 <ListView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="80dp"
     android:id="@+id/movie_listView"></ListView>
 
  <LinearLayout
@@ -27,7 +32,7 @@
      <Button
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:layout_marginLeft="12dp"
+         android:layout_marginLeft="20dp"
          android:id="@+id/movie_statistics"
          android:text="@string/movie_statistics"/>
  </LinearLayout>
