@@ -50,6 +50,7 @@ public class FoodNutrition_SearchFood extends Activity {
         String food_Id;
         String food_Label;
         String food_Calories;
+        String food_uri;
         Bitmap bitmap;
 
         @Override
@@ -61,15 +62,17 @@ public class FoodNutrition_SearchFood extends Activity {
             String url = "https://api.edamam.com/api/food-database/parser?ingr=%22%20+%20food%20+%20%22&app_id=7a31a1cc&app_key=287e7c1c77ff233e0d46d08eab7a6e98";
             String jsonStr = sh.makeServiceCall(url);
 
+            Log.e(TAG, "Response from url: " + jsonStr);
             if (jsonStr != null) {
                 try {
                     JSONObject jsonObj = new JSONObject(jsonStr);
-                    JSONArray parsed = jsonObj.getJSONArray("parsed");
-                    JSONObject food1 = parsed.getJSONObject(0);
+                    JSONArray hints = jsonObj.getJSONArray("hints");
+                    JSONObject food1 = hints.getJSONObject(0);
 
                     JSONObject food = food1.getJSONObject("food");
                      food_Id = food.getString("foodId");
                      food_Label=food.getString("label");
+                     food_uri = food.getString("uri");
                      JSONObject food2 = food.getJSONObject("nutrients");
                      food_Calories=food2.getString("ENERC_KCAL");
 
@@ -97,12 +100,11 @@ public class FoodNutrition_SearchFood extends Activity {
 
             public Bundle getBundle(){
                 bundle = new Bundle();
-                bundle.putByteArray(FoodNutrition_dbHelper.KEY_IMAGE,os.toByteArray());
+               // bundle.putByteArray(FoodNutrition_dbHelper.KEY_IMAGE,os.toByteArray());
                 bundle.putString(FoodNutrition_dbHelper.KEY_ID,food_Id);
                 bundle.putString(FoodNutrition_dbHelper.KEY_NAME,food_Label);
                 bundle.putString(FoodNutrition_dbHelper.KEY_CALORIES,food_Calories);
-                bundle.putString(FoodNutrition_dbHelper.KEY_URL,URL);
-
+                //bundle.putString(FoodNutrition_dbHelper.KEY_URL,URL);
                 return bundle;
             }
     }
