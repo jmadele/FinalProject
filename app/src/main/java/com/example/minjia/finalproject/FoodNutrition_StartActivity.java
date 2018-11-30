@@ -39,7 +39,6 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_nutrition_start_activity);
-        //Log.i(ACTIVITY_NAME, "In onCreate()");
 
         foodNutritionProgressBar = findViewById(R.id.foodNutritionProgressBar);
         foodNutritionImage = findViewById(R.id.foodNutritionImage);
@@ -63,34 +62,6 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
                    startActivityForResult(intent, SEARCH_REQUEST);
                }
            });
-
-        //searchButton.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //       Context context = getApplicationContext();
-        //        Toast.makeText(context, "In searching", Toast.LENGTH_SHORT).show();
-        //    }
-        //});
-
     }
 }
-            //public void onClick(View v) {
-                //Intent intent = new Intent(FoodNutrition_StartActivity.this,
-                //       FoodNutrition_ListItemsActivity.class);
-              //  startActivityForResult(intent, 50);
-            //}
 
-    //@Override
-    //public void onActivityResult(int requestCode,int responseCode, Intent data){
-        //Lab3.11
-        //if (requestCode == 50) {
-        //    Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");
-       // }
-        //if (responseCode == Activity.RESULT_OK) {
-          //  String messagePassed = data.getStringExtra("Response");
-         //   CharSequence text = "ListItemActivity passed: My information to share";
-        //    Toast toast = Toast.makeText(this, text+messagePassed,
-       //             Toast.LENGTH_LONG);
-      //      toast.show();
-     //   }
-    //}

@@ -19,10 +19,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FoodNutrition_StartActivity"
-            style = "AppTheme"/>
+        <activity
+            android:name=".FoodNutrition_StartActivity"
+            style="AppTheme" />
         <activity android:name=".FoodNutrition_ListItemsActivity" />
-        <activity android:name=".FoodNutrition_SearchFood"></activity>
+        <activity android:name=".FoodNutrition_SearchFood" />
+        <activity android:name=".FoodNutrition_dbHelper"></activity>
     </application>
 
 </manifest>
