@@ -33,6 +33,8 @@
     <string name="foodID">Food ID</string>
     <string name="foodName">Food Name</string>
     <string name="foodImage">Food Image</string>
+    <string name="foodCalories">Food Calories</string>
+    <string name="foodUri">Food URI</string>
 
     <!-- octranspo strings -->
     <string name="title_activity_main">MainActivity</string>

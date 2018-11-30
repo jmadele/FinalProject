@@ -26,6 +26,7 @@ public class FoodNutrition_SearchFood extends Activity {
     TextView foodID;
     TextView foodName;
     TextView foodCalories;
+    TextView foodUri;
     protected static final String ACTIVITY_NAME = "Food Nutrition Search";
     Bundle bundle;
 
@@ -39,8 +40,10 @@ public class FoodNutrition_SearchFood extends Activity {
 
         foodImage = (ImageView) findViewById(R.id.foodImage);
         foodID = (TextView) findViewById(R.id.foodIdText);
-        foodName = (TextView) findViewById(R.id.foodName);
-        //foodCalories=(TextView)findViewById(R.id.foodCaloriesText);
+        foodName = (TextView) findViewById(R.id.foodNameText);
+        foodCalories=(TextView)findViewById(R.id.foodCaloriesText);
+        foodUri = (TextView)findViewById(R.id.foodUriText);
+
         final FoodQuery foodQuery = new FoodQuery();
         foodQuery.execute();
     }
@@ -59,7 +62,7 @@ public class FoodNutrition_SearchFood extends Activity {
 //
             FoodNutrition_HttpHandler sh = new FoodNutrition_HttpHandler();
             // Making a request to url and getting response
-            String url = "https://api.edamam.com/api/food-database/parser?ingr=%22%20+%20food%20+%20%22&app_id=7a31a1cc&app_key=287e7c1c77ff233e0d46d08eab7a6e98";
+            String url = "https://api.edamam.com/api/food-database/parser?ingr=%22%20+%20%20+%20%22&app_id=7a31a1cc&app_key=287e7c1c77ff233e0d46d08eab7a6e98";
             String jsonStr = sh.makeServiceCall(url);
 
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -96,15 +99,20 @@ public class FoodNutrition_SearchFood extends Activity {
            foodID.setText(food_Id);
            foodName.setText(food_Label);
            foodCalories.setText(food_Calories);
+           foodUri.setText(food_uri);
         }
 
             public Bundle getBundle(){
                 bundle = new Bundle();
-               // bundle.putByteArray(FoodNutrition_dbHelper.KEY_IMAGE,os.toByteArray());
+
+
+                //"https://www.edamam.com/web-img/98a/98aa5d5cc0d88b28c2b9221a099b1a14.jpg"
+                //https://www.edamam.com/web-img/efe/efe1546ab8593aaa62ed4fac11838f35.jpg
+                //bundle.putByteArray(FoodNutrition_dbHelper.KEY_IMAGE,os.toByteArray());
                 bundle.putString(FoodNutrition_dbHelper.KEY_ID,food_Id);
                 bundle.putString(FoodNutrition_dbHelper.KEY_NAME,food_Label);
                 bundle.putString(FoodNutrition_dbHelper.KEY_CALORIES,food_Calories);
-                //bundle.putString(FoodNutrition_dbHelper.KEY_URL,URL);
+                bundle.putString(FoodNutrition_dbHelper.KEY_URI,food_uri);
                 return bundle;
             }
     }

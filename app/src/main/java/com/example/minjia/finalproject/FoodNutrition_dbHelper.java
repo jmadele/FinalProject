@@ -15,7 +15,7 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
     public static final String KEY_ID = "ID";
     public static final String KEY_NAME = "Name";
     public static final String KEY_CALORIES= "Calories";
-    public static final String KEY_URL = "URL";
+    public static final String KEY_URI = "URI";
     public static final String TABLE_NAME = "FoodNutritionTable";
     public static final String KEY_IMAGE="FoodNutritionPoster";
 
@@ -26,7 +26,7 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
             + KEY_ID  + " text ,"
             + KEY_NAME + " text ,"
             + KEY_CALORIES + " text ,"
-            + KEY_URL + " text );";
+            + KEY_URI + " text );";
 
     public FoodNutrition_dbHelper(Context ctx){
         super(ctx,DATABASE_NAME,null,VERSION_NUM);

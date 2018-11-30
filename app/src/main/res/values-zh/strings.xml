@@ -13,6 +13,8 @@
     <string name="foodID">食品编号</string>
     <string name="foodName">食品名称</string>
     <string name="foodImage">食品图片</string>
+    <string name="foodCalories">食品卡路里</string>
+    <string name="foodUri">食品链接</string>
 
     <string name="movie_detail_title">Movie Title: </string>
     <string name="movie_detail_actor">Main Actors:</string>
