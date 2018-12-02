@@ -32,7 +32,6 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
 
     /**
      * Called on activity start. Provides content view, loads resources and sets button functions.
-     *
      * @param savedInstanceState
      */
     @Override

@@ -2,6 +2,7 @@
 package com.example.minjia.finalproject;
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,10 +14,8 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.File;
+import java.io.ByteArrayOutputStream;
 import java.net.URL;
-
-
 import static android.content.ContentValues.TAG;
 
 public class FoodNutrition_SearchFood extends Activity {
@@ -50,69 +49,92 @@ public class FoodNutrition_SearchFood extends Activity {
 
 
         public class FoodQuery extends AsyncTask<String, Integer, String> {
-        String food_Id;
-        String food_Label;
-        String food_Calories;
-        String food_uri;
-        Bitmap bitmap;
+            String food_Id;
+            String food_Label;
+            String food_Calories;
+            String food_Uri;
+            URL food_link;
+            Bitmap food_Image;
+            ByteArrayOutputStream os;
 
-        @Override
-        protected String doInBackground(String ...args) {
+            /**
+             * connect to the url link, and grab the values from the web page using api app_id and app_key
+             *
+             * @param args
+             * @return
+             */
+            @Override
+            protected String doInBackground(String... args) {
 //            InputStream stream;
-//
-            FoodNutrition_HttpHandler sh = new FoodNutrition_HttpHandler();
-            // Making a request to url and getting response
-            String url = "https://api.edamam.com/api/food-database/parser?ingr=%22%20+%20%20+%20%22&app_id=7a31a1cc&app_key=287e7c1c77ff233e0d46d08eab7a6e98";
-            String jsonStr = sh.makeServiceCall(url);
 
-            Log.e(TAG, "Response from url: " + jsonStr);
-            if (jsonStr != null) {
-                try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-                    JSONArray hints = jsonObj.getJSONArray("hints");
-                    JSONObject food1 = hints.getJSONObject(0);
+                FoodNutrition_HttpHandler sh = new FoodNutrition_HttpHandler();
+                // Making a request to url and getting response
+                String url = "https://api.edamam.com/api/food-database/parser?ingr=%22%20+%20%20+%20%22&app_id=7a31a1cc&app_key=287e7c1c77ff233e0d46d08eab7a6e98";
+                String jsonStr = sh.makeServiceCall(url);
 
-                    JSONObject food = food1.getJSONObject("food");
-                     food_Id = food.getString("foodId");
-                     food_Label=food.getString("label");
-                     food_uri = food.getString("uri");
-                     JSONObject food2 = food.getJSONObject("nutrients");
-                     food_Calories=food2.getString("ENERC_KCAL");
+                Log.e(TAG, "Response from url: " + jsonStr);
+                if (jsonStr != null) {
+                    try {
+                        JSONObject jsonObj = new JSONObject(jsonStr);
+                        JSONArray hints = jsonObj.getJSONArray("hints");
+                        JSONObject food1 = hints.getJSONObject(0);
+
+                        JSONObject food = food1.getJSONObject("food");
+                        food_Id = food.getString("foodId");
+                        food_Label = food.getString("label");
+                        food_Uri = food.getString("uri");
+                        JSONObject food2 = food.getJSONObject("nutrients");
+                        food_Calories = food2.getString("ENERC_KCAL");
+
+                        // Getting JSON Array node
+                    } catch (final JSONException e) {
+                        Log.e(TAG, "Json parsing error: " + e.getMessage());
+                    }
+                }
 
 
-                    // Getting JSON Array node
-                }catch (final JSONException e) {
-                    Log.e(TAG, "Json parsing error: " + e.getMessage());}}
-            return null;
-        }
+                return null;
+            }
 
-        @Override
-        protected void onProgressUpdate(Integer ... value){
-            progressBar.setVisibility(View.VISIBLE);
-            progressBar.setProgress(value[0]);
-            Log.i(ACTIVITY_NAME, "In onProgressUpdate");
-        }
+            /**
+             * animate a progress bar in the interface while the background computation is still executing
+             *
+             * @param value
+             */
+            @Override
+            protected void onProgressUpdate(Integer... value) {
+                progressBar.setVisibility(View.VISIBLE);
+                progressBar.setProgress(value[0]);
+                Log.i(ACTIVITY_NAME, "In onProgressUpdate");
+            }
 
-        @Override
-        protected void onPostExecute(String result) {
-            progressBar.setVisibility(View.INVISIBLE);
-           foodID.setText(food_Id);
-           foodName.setText(food_Label);
-           foodCalories.setText(food_Calories);
-           foodUri.setText(food_uri);
-        }
+            /**
+             * after the progress is done, make progress bar disappear, and pass the values to result
+             *
+             * @param result
+             */
+            @Override
+            protected void onPostExecute(String result) {
+                progressBar.setVisibility(View.INVISIBLE);
+                foodID.setText(food_Id);
+                foodName.setText(food_Label);
+                foodCalories.setText(food_Calories);
+                foodUri.setText(food_Uri);
+            }
 
-            public Bundle getBundle(){
+            /**
+             * bundle the values together to be used later
+             *
+             * @return
+             */
+            public Bundle getBundle() {
                 bundle = new Bundle();
 
-
-                //"https://www.edamam.com/web-img/98a/98aa5d5cc0d88b28c2b9221a099b1a14.jpg"
-                //https://www.edamam.com/web-img/efe/efe1546ab8593aaa62ed4fac11838f35.jpg
-                //bundle.putByteArray(FoodNutrition_dbHelper.KEY_IMAGE,os.toByteArray());
-                bundle.putString(FoodNutrition_dbHelper.KEY_ID,food_Id);
-                bundle.putString(FoodNutrition_dbHelper.KEY_NAME,food_Label);
-                bundle.putString(FoodNutrition_dbHelper.KEY_CALORIES,food_Calories);
-                bundle.putString(FoodNutrition_dbHelper.KEY_URI,food_uri);
+                bundle.putByteArray(FoodNutrition_dbHelper.KEY_IMAGE, os.toByteArray());
+                bundle.putString(FoodNutrition_dbHelper.KEY_ID, food_Id);
+                bundle.putString(FoodNutrition_dbHelper.KEY_NAME, food_Label);
+                bundle.putString(FoodNutrition_dbHelper.KEY_CALORIES, food_Calories);
+                bundle.putString(FoodNutrition_dbHelper.KEY_URI, food_Uri);
                 return bundle;
             }
     }

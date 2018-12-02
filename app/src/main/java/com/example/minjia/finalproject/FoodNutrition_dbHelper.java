@@ -22,7 +22,7 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
     // This string is used to create table.
     private static final String DATABASE_CREATE = "create table " + TABLE_NAME
             + "( " + KEY_ID + " integer primary key autoincrement, "
-            +KEY_IMAGE + " blob,"
+            + KEY_IMAGE + " blob,"
             + KEY_ID  + " text ,"
             + KEY_NAME + " text ,"
             + KEY_CALORIES + " text ,"

@@ -24,7 +24,8 @@
             style="AppTheme" />
         <activity android:name=".FoodNutrition_ListItemsActivity" />
         <activity android:name=".FoodNutrition_SearchFood" />
-        <activity android:name=".FoodNutrition_dbHelper"></activity>
+        <activity android:name=".FoodNutrition_dbHelper" />
+        <activity android:name=".FoodNutrition_Fragement"></activity>
     </application>
 
 </manifest>
