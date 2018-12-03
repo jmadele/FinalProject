@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/cbc_toolbarmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/cbc_help"
+        android:title="@string/cbc_toolbarmenu"
+        android:orderInCategory="100"
+        android:visible="true"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/CBC_HelpItem"
+                android:title="@string/cbc_HelpItem"
+                android:orderInCategory="101"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/CBC_AboutItem"
+                android:title="@string/cbc_AboutItem"
+                android:orderInCategory="101"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+</menu>
