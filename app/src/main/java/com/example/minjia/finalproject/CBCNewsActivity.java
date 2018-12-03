@@ -1,28 +1,27 @@
 package com.example.minjia.finalproject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -30,238 +29,346 @@ import android.widget.Toast;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class CBCNewsActivity extends Activity {
-    private static final String ACTIVITY_NAME = "CBCNews Reader Activity";
+import javax.net.ssl.HttpsURLConnection;
+
+/**
+ * activity: CBC News RSS Reader
+ * author: Min Jia
+ * Date: Dec 02, 2018
+ */
+
+public class CBCNewsActivity extends AppCompatActivity {
+    private static final String ACTIVITY_NAME = "CBC News Reader";
     private ProgressBar progressBar;
-    private ImageView CBCNewsImage;
-    private TextView newsTitle;
+    private Button btnSearch;
+    protected ListView newsListView;
+    private NewsAdapter newsAdapter;
+    private TextView titleText;
     private EditText editText;
-    private Button btn;
-    private Button progressBtn;
-    private TextView typeText;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
+    private ArrayList<CBCNewsData> newsList;
+    private String tempTitle, tempLink, tempDescription;
 
-    private ListView myList;
-    //variable newsList: stores search results
-    private ArrayList<String> newsList;
-
-
+    /**
+     * onCreate()method is to create the activity
+     * instantiate variables
+     * populate data into the listView
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cbcnews);
-        //instantiate the progress bar and set it as visible
-        // set the progressBar as Indeterminate, only for testing
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
-        progressBar.setMax(100);
-        progressBar.setBackgroundColor(Color.RED);
-        progressBar.setIndeterminate(true);
-        progressBar.incrementProgressBy(5);
-
-        //editText is used to store data
-        editText = findViewById(R.id.searchEditText);
         newsList = new ArrayList<>();
-        newsList.add(0,"movie");
-        newsList.add(1,"news");
-        newsList.add(2,"sports");
-        newsList.add(3,"travel");
+        //instantiate the progress bar and set it as visible
+        progressBar = findViewById(R.id.CBC_progressBar);
 
-        //final NewsAdapter newsAdapter = new NewsAdapter(this);
-        //initiate btn and perform click event on Search button
-        btn = findViewById(R.id.Search);
-        btn.setOnClickListener(new View.OnClickListener() {
+        titleText = findViewById(R.id.News_title);
+        editText = findViewById(R.id.CBC_editText);
+        editText.setShowSoftInputOnFocus(false);
+        //linkText=findViewById(R.id.News_link);
 
-          @Override
-            public void onClick(View view) {
-               Context context = getApplicationContext();
-               Toast.makeText(context,"In searching news...message",Toast.LENGTH_SHORT).show();
+        //get a reference to the ListView
+        newsAdapter = new NewsAdapter(CBCNewsActivity.this);
+        newsListView = findViewById(R.id.CBC_listView);
+        //to populate the listView with data
+        newsListView.setAdapter(newsAdapter);
 
-//              String text = editText.getText().toString();
-//              newsList.add(text);
-//              newsAdapter.notifyDataSetChanged();
-//              editText.setText("");
-             }
+        //By clicking on a certain title in the listView, you can get the news details
+        newsListView.setOnItemClickListener((parent, view, position, id) -> {
+            progressBar.setProgress(50);
 
-         });
+            Toast.makeText(getBaseContext(), "Going to the details of the news..." , Toast.LENGTH_SHORT).show();
+            CBCNewsData newsContent = newsAdapter.getItem(position);
+            Intent intent = new Intent(CBCNewsActivity.this, CBCNewsContent.class);
+            intent.putExtra("title", newsContent.getNewsTitle());
+            intent.putExtra("link", newsContent.getNewsLink());
+            intent.putExtra("desc", newsContent.getNewsDescription());
+            startActivity(intent);
 
+        });
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("A dialog")
-                .setPositiveButton("Hello", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "You clicked on ...", Toast.LENGTH_SHORT).show();
-                    }
-                }).create().show();
-
-        myList = findViewById(R.id.foodListView);
-
-        ArrayAdapter<String> newsAdapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_2, android.R.id.text1,newsList );
-        myList.setAdapter(newsAdapter);
-
-        myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
-                Toast.makeText(CBCNewsActivity.this, "item clicked: "+i +" "+ newsList.get(i),Toast.LENGTH_LONG).show();
+        btnSearch = findViewById(R.id.CBC_SearchNews);
+        //click search for news titles that you want
+        // this will show the news title which contain what you want into an ArrayList
+        btnSearch.setOnClickListener(view -> {
+            Toast.makeText(getApplicationContext(), "searching.... ", Toast.LENGTH_SHORT).show();
+            for(int i=0;i<newsList.size();i++) {
+                if ((newsList.get(i).getNewsTitle()).contains(editText.getText().toString())) {
+                    Snackbar.make(findViewById(R.id.CBC_SearchNews), newsList.get(i).getNewsTitle(), Snackbar.LENGTH_LONG).show();
+                    Spannable spannable = new SpannableString(newsList.get(i).getNewsTitle());
+                    titleText.setText(spannable);
+                }
             }
         });
-       // CBCNewsImage = findViewById(R.id.CBCNewsImage);
-        new NewsQuery().execute("String parameters");
+        Toolbar cbc_toolbar = findViewById(R.id.cbc_toolbar);
+        setSupportActionBar(cbc_toolbar);
+        //call AsynTask
+        new NewsQuery().execute();
     }
 
-    private class NewsAdapter extends ArrayAdapter<String> {
+    /**
+     * onCreateOptionsMenu (menu) is to display the menu and menuitem from layout cbc_toolbarmenu
+     * @param menu
+     * @return true
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cbc_toolbarmenu, menu);
+        return true;
+    }
+
+    /**
+     * this function responds to selected item
+     * @param mi menu item
+     * @return boolean true
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem mi) {
+        int id = mi.getItemId();
+        switch (id) {
+            /**
+             * when clicking on HelpItem, a dialog will show
+             */
+            case R.id.CBC_HelpItem: {
+                builder = new AlertDialog.Builder(CBCNewsActivity.this);
+                builder.setTitle("Help");
+                builder.setPositiveButton("Click for help", (dialog, id1) ->
+                        Toast.makeText(getApplicationContext(), "Click title for more details, then click the link to view the website",
+                                Toast.LENGTH_SHORT).show());
+                builder.setNegativeButton("cancel", (dialog, id12) -> dialog.dismiss());
+                dialog = builder.create();
+                dialog.show();
+                break;
+            }
+            /**
+             * when clicking on AboutItem, a message about the app and author will show
+             */
+            case R.id.CBC_AboutItem:
+                Toast.makeText(getApplicationContext(), "CBC News RSS Reader V1.0, Author: Min Jia", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    /**
+     * Adpater class, to pass data to the listView
+     */
+    public class NewsAdapter extends ArrayAdapter<CBCNewsData> {
         protected NewsAdapter(Context ctx) {
             super(ctx, 0);
         }
+
+        /**
+         * @return number of items in the list
+         */
         public int getCount() {
             return newsList.size();
         }
-        public String getItem(int position){
+        /**
+         * @param position: integer
+         * @return item at the specific row position
+         */
+        public CBCNewsData getItem(int position) {
             return newsList.get(position);
         }
-        public View getView(int position, View convertView, ViewGroup parent){
+
+        /**
+         * @param position
+         * @param view
+         * @param parent
+         * @return news title as a View object at the row position
+         */
+        public View getView(int position, View view, ViewGroup parent) {
+            //for each row, use a LayoutInflator object
             LayoutInflater inflater = CBCNewsActivity.this.getLayoutInflater();
-            View resultView = null;
-            resultView = inflater.inflate(R.layout.activity_news_title, null);
-            TextView txt = resultView.findViewById(R.id.foodListView);
-            txt.setText(getItem(position));
+            //resultView is a containter and has news titles
+            View resultView = inflater.inflate(R.layout.list_view_cbcnews, null);
+            //retrieve the object from the resultView
+            titleText = resultView.findViewById(R.id.News_title);
+            titleText.setText(newsList.get(position).getNewsTitle());
             return resultView;
         }
-        public long getItemId(int position){
+
+        //return the database id of the item at the position
+        public long getItemId(int position) {
             return position;
         }
-
     }
-    //inner class
-    private class NewsQuery extends AsyncTask <String, Integer, String> {
-            private String type;
-            //bitmap used to store the picture of current news
-            private Bitmap bitmap;
-            private String iconName;
-            //run in UI before calling background method
-            @Override
-            protected void onPreExecute(){
-                super.onPreExecute();
-                progressBar.setVisibility(View.VISIBLE);
-            }
 
-            @Override
-            protected String doInBackground(String ...args){
-                InputStream stream;
-                //check network connection
-                URL url = null;
-                ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-                NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
-                if(networkInfo != null&& networkInfo.isConnected()){
-                    Log.i(ACTIVITY_NAME, "Device is connecting to the network");
-                }else {
-                    Log.i(ACTIVITY_NAME,"Device is not connecting to network");
-                }
-                try {
-                    //set up the connection and get input stream
-                    url = new URL("https://www.cbc.ca/cmlink/rss-world");
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(10000 /* milliseconds */);
-                    conn.setConnectTimeout(15000 /* milliseconds */);
-                    conn.setRequestMethod("GET");
-                    conn.setDoInput(true);
-                    Log.d(ACTIVITY_NAME,"Connecting with URL...");
-
-                    conn.connect();
-                    stream = conn.getInputStream();
-                    Log.d(ACTIVITY_NAME,"Reading rss. Stream is: " + stream);
-
-                    //instantiate the XmlPullParser
-                    XmlPullParser parser = Xml.newPullParser();
-                    parser.setInput(stream,null);
-                    parser.nextTag();
-
-                    while(parser.next()!=XmlPullParser.END_DOCUMENT){
-                        //if the current event isn't a start_tag, it throws an exception
-                        if(parser.getEventType()== XmlPullParser.START_TAG){
-
-
-
-                            if(parser.getName().equals("channel")) {
-                                iconName = parser.getAttributeValue(null, "icon");
-                            }
-                            if(parser.getName().equals("title")){
-                                type = parser.getAttributeValue(null,"story");
-                                publishProgress(50);
-                                SystemClock.sleep(500);
-                            }
-                        }
-
-                    }
-                    conn.disconnect();
-                    String imageFile = iconName + ".png";
-                    if(fileExistence(imageFile)){
-                        FileInputStream fileInput = null;
-                        try{
-                            fileInput = new FileInputStream(getBaseContext().getFileStreamPath(imageFile));
-                            // fileInput = openFileInput(imageFile);
-                        }catch(FileNotFoundException e){
-                            e.printStackTrace();
-                        }
-                        bitmap = BitmapFactory.decodeStream(fileInput);
-                        Log.i(ACTIVITY_NAME,"image exists, read from file");
-                    }
-//                    else {
-//                        URL imageUrl =  new URL("http://openweathermap.org/img/w/" + iconName + ".png");
-//                        conn = (HttpURLConnection) imageUrl.openConnection();
-//                        conn.connect();
-//                        stream = conn.getInputStream();
-//                        bitmap = BitmapFactory.decodeStream(stream);
-//                        FileOutputStream outputStream = openFileOutput(iconName + ".png", Context.MODE_PRIVATE);
-//                        bitmap.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
-//                        outputStream.flush();
-//                        outputStream.close();
-//                    }
-                    Log.i(ACTIVITY_NAME,"File Name = " + imageFile );
-                    publishProgress(100);
-
-                } catch (MalformedURLException e) {
-                    Log.e(ACTIVITY_NAME,e.getMessage());
-                } catch (IOException e) {
-                    Log.e(ACTIVITY_NAME,e.getLocalizedMessage());
-                } catch (XmlPullParserException parseException) {
-                    Log.e(ACTIVITY_NAME,parseException.getLocalizedMessage());
-                }
-            return "string passed to onPostExecute()";
+    /**
+     * class NewsQuery is used to get data from the news web site
+     */
+    private class NewsQuery extends AsyncTask<String, String, String> {
+        InputStream stream;
+        XmlPullParser parser;
+        XmlPullParserFactory xmlPullParserFactory;
+        private String title, link, description;
+        //run in UI before calling background method
+              @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+            newsAdapter.notifyDataSetChanged();
         }
+
+        /**
+         * call readText() and parse the text between "title" tags to String title
+         * @param parser
+         * @return text between opening tag and closing tag of "title"
+         * @throws IOException
+         * @throws XmlPullParserException
+         * source: https://android.googlesource.com/platform/frameworks/base.git/+/master/samples/training/network-usage/src/com/example/android/networkusage/StackOverflowXmlParser.java
+         */
+        private String readTitle(XmlPullParser parser) throws IOException, XmlPullParserException {
+            parser.require(XmlPullParser.START_TAG, null, "title");
+            String title = readText(parser);
+            parser.require(XmlPullParser.END_TAG, null, "title");
+            return title;
+        }
+
+        /**
+         * call readText() and parse the text between "link" tags to String link
+         * @param parser
+         * @return text between opening tag and closing tag of "link"
+         * @throws IOException
+         * @throws XmlPullParserException
+         * source: https://android.googlesource.com/platform/frameworks/base.git/+/master/samples/training/network-usage/src/com/example/android/networkusage/StackOverflowXmlParser.java
+         */
+        private String readLink(XmlPullParser parser) throws IOException, XmlPullParserException {
+            parser.require(XmlPullParser.START_TAG, null, "link");
+            String link= readText(parser);
+            parser.require(XmlPullParser.END_TAG, null, "link");
+            return link;
+        }
+
+        /**
+         * call readText and parse the text between "description" tags to String description
+         * @param parser
+         * @return text between opening tag and closing tag of "description"
+         * @throws IOException
+         * @throws XmlPullParserException
+         * source: https://android.googlesource.com/platform/frameworks/base.git/+/master/samples/training/network-usage/src/com/example/android/networkusage/StackOverflowXmlParser.java
+         */
+        private String readDescription(XmlPullParser parser) throws IOException, XmlPullParserException {
+            parser.require(XmlPullParser.START_TAG, null, "description");
+            String description = readText(parser);
+            parser.require(XmlPullParser.END_TAG, null, "description");
+            return description;
+        }
+
+        /**
+         * parse the content between matching tags to a String
+         * @param parser
+         * @return text between opening and closing tags
+         * @throws IOException
+         * @throws XmlPullParserException
+         * source:https://stackoverflow.com/questions/21081480/best-way-to-parse-this-xml-file
+         */
+        private String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
+            String result = null;
+            if (parser.next() == XmlPullParser.TEXT) {
+                result = parser.getText();
+                parser.nextTag();
+            }
+            return result;
+        }
+
+        @Override
+        protected String doInBackground(String... args) {
+            URL url = null;
+            //newsList = new ArrayList<>();
+            ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
+            if (networkInfo != null && networkInfo.isConnected()) {
+                Log.i(ACTIVITY_NAME, "Device is connecting to the network");
+            } else {
+                Log.i(ACTIVITY_NAME, "Device is not connecting to network");
+            }
+            try {
+                //set up the connection and get input stream
+                url = new URL("https://www.cbc.ca/cmlink/rss-world");
+                HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+                conn.setReadTimeout(10000 /* milliseconds */);
+                conn.setConnectTimeout(15000 /* milliseconds */);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                Log.d(ACTIVITY_NAME, "Connecting with URL...");
+                conn.connect();
+                int response = conn.getResponseCode();
+                Log.d("debug", "the response is: " + response);
+                stream = conn.getInputStream();
+                Log.d(ACTIVITY_NAME, "Reading rss. Stream is: " + stream);
+                //progressBar.setProgress(50);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            try {
+                //first create XmlPullParserFatory object, then create XmlPullParser object
+                xmlPullParserFactory = XmlPullParserFactory.newInstance();
+                xmlPullParserFactory.setNamespaceAware(true);
+                parser = Xml.newPullParser();
+                parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+                //specify the file for XmlPullParser that contains XML
+                parser.setInput(stream, null);
+                parser.nextTag();
+                while (parser.next() != XmlPullParser.END_DOCUMENT) {
+                    if (parser.getEventType() != XmlPullParser.START_TAG) {
+                        continue;
+                    }
+                    String name = parser.getName();
+                    if (name.equals("title")) {
+                        tempTitle = readTitle(parser);
+                    }
+                    if (name.equals("link")) {
+                        tempLink = readLink(parser);
+                    }
+                    if (name.equals("description")) {
+                        tempDescription = readDescription(parser);
+                        newsList.add(new CBCNewsData(tempTitle, tempLink, tempDescription));
+                        progressBar.setProgress(75);
+                    }
+                }
+                stream.close();
+            } catch (XmlPullParserException | IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    stream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return title;
+        }
+
+
         //set the visibility of progressBar to visible and pass value to the progress
-        public void onProgressUpdate(Integer... value) {
+    public void onProgressUpdate(Integer... value) {
             progressBar.setProgress(value[0]);
             progressBar.setVisibility(View.VISIBLE);
             Log.i(ACTIVITY_NAME, "In onProgressUpdate");
-        }
-        //update the GUI components with the data read from XML
-        @Override
-        public void onPostExecute(String result) {
-            super.onPostExecute(result);
-            typeText.setText("type of the news is" + type);
-            Log.i(ACTIVITY_NAME,result);
-            progressBar.setVisibility(View.INVISIBLE);
-
-        }
-        public boolean fileExistence(String fileName) {
-            File file = getBaseContext().getFileStreamPath(fileName);
-            return file.exists();
-        }
     }
 
+        //update the GUI components with the data read from XML
+        @Override
+    public void onPostExecute(String result) {
+            super.onPostExecute(result);
+            progressBar.setVisibility(View.GONE);
+          //  newsAdapter.notifyDataSetChanged();
+        }
+ }
+    protected void onDestroy() {
+        Log.i(ACTIVITY_NAME, "In onDestroy()");
+        super.onDestroy();
+    }
 }
+

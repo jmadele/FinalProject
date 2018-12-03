@@ -21,8 +21,13 @@
     <string name="activity_News">CBC News reader</string>
     <string name="activity_Movie">Movie Information</string>
     <string name="activity_Bus">OCTranspo Bus Route App</string>
-    <string name="Search">Search</string>
-    <string name="newsTitle"> CBC News Title</string>
+
+    <string name="CBC_SearchNews">Search</string>
+    <string name="CBC_saveButton">Save</string>
+    <string name="CBC_inputText">input to search</string>
+    <string name="cbc_AboutItem">About</string>
+    <string name="cbc_HelpItem">Help</string>
+    <string name="cbc_toolbarmenu">toolbar</string>
 
     <!-- octranspo strings -->
     <string name="title_activity_main">MainActivity</string>
@@ -50,7 +55,9 @@
     <string name="helpInfo">This app includes 4 seperate activities, choose 1 to see description,
                     then hit the launch button to start.</string>
     <string name="delete">Delete</string>
-    <string name="stationnum">Station Number</string>
+    <string name="food_nutrition">Food Nutrition</string>
+
+
     <string name="station">Station</string>
     <string name="howTo">How to use the application</string>
     <string name="statistics">Statistics</string>
