@@ -40,8 +40,14 @@
     <string name="cancel">Cancel</string>
     <string name="numStations">Number of stations stored in Database:</string>
     <string name="viewRoutes">View Routes</string>
+    <string name="movieAppInfo">Movie Information Selected \n\nView description,
+                                length, actors, ratings, genre and poster.</string>
     <string name="transpoAppDesc">OC Transpo Route Info selected\n\n View destination, latitude,
                     longitude, gps speed, start time and adjusted schedule time.</string>
+    <string name="cbcNewsAppDesc">Reader Intake Form Selected\n\nEnter new pages to view
+                    the news .</string>
+    <string name="foodNutritionAppDesc">User select the different food to see the detials of
+                    the food and its nutrition.</string>
     <string name="helpInfo">This app includes 4 seperate activities, choose 1 to see description,
                     then hit the launch button to start.</string>
     <string name="delete">Delete</string>

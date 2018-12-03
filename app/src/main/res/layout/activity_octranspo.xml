@@ -6,7 +6,16 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_main"
     android:id="@+id/transpoMainLayout"
-    tools:context=".OCTranspo">
+    tools:context="com.example.minjia.finalproject.OCTranspo">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/transpo_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#27ada6"
+        android:elevation="15dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,6 +24,7 @@
         android:layout_marginTop="80dp"
         android:id="@+id/routeRow"
         android:background="@drawable/background_main"
+        android:layout_below="@id/title"
         android:padding="15dp">
 
         <TextView
@@ -29,7 +39,6 @@
         <EditText
             android:id="@+id/stationInput"
             android:background="@drawable/background_inner"
-
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
@@ -38,7 +47,7 @@
             android:inputType="number"
             android:maxLength="4"/>
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,16 +57,29 @@
             android:elevation="10dp"
             android:scaleType="center"
             android:backgroundTint="#FFFFFF"
-            android:text="@string/submitButton"/>
+            app:srcCompat="@android:drawable/ic_input_add">
 
-
+        </android.support.design.widget.FloatingActionButton>
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp"
+        android:text="@string/transpoTitle"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/busImg"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/title"
             android:layout_marginTop="10dp"
             android:src="@drawable/bus"
             android:layout_centerHorizontal="true"/>
@@ -73,6 +95,15 @@
             android:visibility="visible"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_below="@id/routeRow"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progress"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic"
+            android:layout_marginLeft="20dp"
+            android:text="@string/stations"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -90,6 +121,29 @@
             android:background="@drawable/background_inner">
         </ListView>
 
+        <FrameLayout
+            android:id="@+id/routesFrame"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="250dp"
+            android:layout_height="200dp">
+        </FrameLayout>
+
     </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/dismissButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_revert"
+        android:layout_below="@+id/routeRow"
+        android:layout_marginRight="80dp"
+        android:layout_marginTop="215dp"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:scaleType="center"/>
+
+
 
 </RelativeLayout>
