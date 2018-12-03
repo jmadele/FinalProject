@@ -32,6 +32,7 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
 
     /**
      * Called on activity start. Provides content view, loads resources and sets button functions.
+     *
      * @param savedInstanceState
      */
     @Override
@@ -63,4 +64,23 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
            });
     }
 }
+            //public void onClick(View v) {
+                //Intent intent = new Intent(FoodNutrition_StartActivity.this,
+                //       FoodNutrition_ListItemsActivity.class);
+              //  startActivityForResult(intent, 50);
+            //}
 
+    //@Override
+    //public void onActivityResult(int requestCode,int responseCode, Intent data){
+        //Lab3.11
+        //if (requestCode == 50) {
+        //    Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");
+       // }
+        //if (responseCode == Activity.RESULT_OK) {
+          //  String messagePassed = data.getStringExtra("Response");
+         //   CharSequence text = "ListItemActivity passed: My information to share";
+        //    Toast toast = Toast.makeText(this, text+messagePassed,
+       //             Toast.LENGTH_LONG);
+      //      toast.show();
+     //   }
+    //}

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".FoodNutrition_StartActivity">
+    tools:context=".FoodNutrition">
 
     <ImageView
         android:id="@+id/foodNutritionImage"
@@ -20,6 +20,7 @@
 
         <ListView
             android:id="@+id/foodListView"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/searchButton"
