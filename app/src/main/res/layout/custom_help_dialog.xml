@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_transpohelp">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/helpHeader"
+        android:layout_height="60dp"
+        android:background="#27ada6">
+    </ImageView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:paddingTop="15dp"
+        android:layout_height="wrap_content"
+        android:text="@string/howTo"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/transpoInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/helpHeader"
+        android:padding="20dp"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp"
+        android:text="@string/transpoinst"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/infoBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@android:drawable/ic_menu_revert"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/transpoInfo"
+        android:layout_marginBottom="5dp"
+        android:scaleType="center"/>
+
+
+</RelativeLayout>

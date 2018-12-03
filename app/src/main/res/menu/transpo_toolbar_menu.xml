@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item android:id="@+id/activity_one"
+        android:title="ocTranspo"
+        android:icon="@drawable/bus"
+        android:orderInCategory="101"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/activity_two"
+        android:title="movie"
+        android:icon="@drawable/movie"
+        android:orderInCategory="102"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/activity_three"
+        android:title="cbcews"
+        android:icon="@drawable/cbcnews"
+        android:orderInCategory="103"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/activity_four"
+        android:title="foodnutrition"
+        android:icon="@drawable/foodnutrition"
+        android:orderInCategory="104"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/home"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:orderInCategory="104"
+        android:title="home"
+        app:showAsAction="always" />
+
+
+
+    <item android:id="@+id/aboutTranspo"
+        android:title="@string/about"
+        android:orderInCategory="101"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/helpTranspo"
+        android:title="@string/help"
+        android:orderInCategory="102"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/statistics"
+        android:orderInCategory="103"
+        android:title="@string/statistics"
+        app:showAsAction="never"/>
+
+</menu>
