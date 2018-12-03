@@ -49,4 +49,12 @@
             然后选择一个站号，以获取该站的公交路线列表。
             最后，请选择巴士路线以获取更多详细信息（目的地，开始时间等）</string>
 
+
+    <string name="CBC_SearchNews">搜索</string>
+    <string name="CBC_saveButton">保存</string>
+    <string name="CBC_inputText">输入</string>
+    <string name="cbc_AboutItem">关于</string>
+    <string name="cbc_HelpItem">帮助</string>
+    <string name="cbc_toolbarmenu">工具栏</string>
+
 </resources>
