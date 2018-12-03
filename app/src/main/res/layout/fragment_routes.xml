@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context="com.example.minjia.finalproject.RoutesFragment"
+    android:background="@drawable/background_inner">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/routesTitle"
+        android:layout_width="210dp"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:text="@string/busRoutes"
+        android:textStyle="italic"/>
+    <ListView
+        android:layout_width="210dp"
+        android:layout_height="130dp"
+        android:layout_below="@+id/routesTitle"
+        android:id="@+id/routeList">
+    </ListView>
+
+</RelativeLayout>
