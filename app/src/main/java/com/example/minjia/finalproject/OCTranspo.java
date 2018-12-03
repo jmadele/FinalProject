@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -271,16 +272,17 @@ public class OCTranspo extends AppCompatActivity {
 
                     oldView = view;
 
+
                     String station = stationsAdapter.getItem(position);
                     Log.i("STATION", station);
                     currentStation = station.substring(2, station.length());
+
 
                     stationDialog.show();
                     routeListIsOpen = true;
 
                     stationsList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-                    view.setBackgroundColor(Color.LTGRAY);
-
+                    view.setBackgroundColor(Color.LTGRAY);       
                     TextView stationNumber = stationDialog.findViewById(R.id.currentStation);
                     String stationInfo = getResources().getString(R.string.station);
                     stationNumber.setText(stationInfo + station);

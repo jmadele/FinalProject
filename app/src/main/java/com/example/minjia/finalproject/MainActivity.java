@@ -24,6 +24,15 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 50);
             }
         });
+    final Button movie_button=(Button) findViewById(R.id.MovieButton);
+    movie_button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(MainActivity.this, Movie.class);
+            startActivity(intent);
+        }
+    });
+
 
         final Button News = findViewById(R.id.NewsButton);
         News.setOnClickListener(new View.OnClickListener() {
@@ -34,15 +43,6 @@ public class MainActivity extends Activity {
             }
         });
 
-
-        final Button Movie = findViewById(R.id.MovieButton);
-        Movie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*Intent intent = new Intent(MainActivity.this, MovieInfo.class);
-                startActivityForResult(intent, 50);*/
-            }
-        });
 
         final Button Bus = findViewById(R.id.BusButton);
         Bus.setOnClickListener(new View.OnClickListener() {
