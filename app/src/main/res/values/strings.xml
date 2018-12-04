@@ -23,7 +23,7 @@
     <string name="activity_Bus">OCTranspo Bus Route App</string>
 
     <string name="CBC_SearchNews">Search</string>
-    <string name="CBC_saveButton">Save</string>
+    <string name="CBC_saveButton">More</string>
     <string name="CBC_inputText">input to search</string>
     <string name="cbc_AboutItem">About</string>
     <string name="cbc_instruction">Instructions</string>

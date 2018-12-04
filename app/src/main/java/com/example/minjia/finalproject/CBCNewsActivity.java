@@ -56,7 +56,7 @@ public class CBCNewsActivity extends AppCompatActivity {
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
     private ArrayList<CBCNewsData> newsList;
-    private String tempTitle, tempLink, tempDescription;
+    private String tempTitle, tempLink, tempDescription, tempPubDate, tempAuthor;
 
     /**
      * onCreate()method is to create the activity
@@ -68,6 +68,7 @@ public class CBCNewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cbcnews);
+
         //instantiate newsList as an ArrayList
         newsList = new ArrayList<>();
         //instantiate the progress bar
@@ -89,18 +90,20 @@ public class CBCNewsActivity extends AppCompatActivity {
             progressBar.setProgress(50);
 
             Toast.makeText(getBaseContext(), "Going to the details of the news..." , Toast.LENGTH_SHORT).show();
-            CBCNewsData newsContent = newsAdapter.getItem(position);
+            CBCNewsData newsData = newsAdapter.getItem(position);
             Intent intent = new Intent(CBCNewsActivity.this, CBCNewsContent.class);
-            intent.putExtra("title", newsContent.getNewsTitle());
-            intent.putExtra("link", newsContent.getNewsLink());
-            intent.putExtra("desc", newsContent.getNewsDescription());
+            intent.putExtra("title", newsData.getNewsTitle());
+            intent.putExtra("link", newsData.getNewsLink());
+            intent.putExtra("desc", newsData.getNewsDescription());
+            intent.putExtra("pubDate", newsData.getPubDate());
+            intent.putExtra("author", newsData.getAuthor());
             startActivity(intent);
 
         });
 
         btnSearch = findViewById(R.id.CBC_SearchNews);
         //click search for news titles that you want
-        // this will show the news title which contain what you want into an ArrayList
+        // this will show the news title that you want
         btnSearch.setOnClickListener(view -> {
             Toast.makeText(getApplicationContext(), "searching.... ", Toast.LENGTH_SHORT).show();
             for(int i=0;i<newsList.size();i++) {
@@ -133,7 +136,6 @@ public class CBCNewsActivity extends AppCompatActivity {
      * @param mi menu item
      * @return boolean true
      */
-
     @Override
     public boolean onOptionsItemSelected(MenuItem mi) {
         int id = mi.getItemId();
@@ -178,7 +180,7 @@ public class CBCNewsActivity extends AppCompatActivity {
                 builder.setTitle("About")
                         .setMessage("CBC News RSS Reader APP V1.0 \n Author: Min Jia")
                         .setNegativeButton("cancel", (dialog, id12) -> dialog.dismiss());
-                dialog=builder.create();
+                dialog = builder.create();
                 dialog.show();
                 break;
         }
@@ -276,6 +278,18 @@ public class CBCNewsActivity extends AppCompatActivity {
             return link;
         }
 
+        private String readPubDate(XmlPullParser parser) throws IOException, XmlPullParserException {
+            parser.require(XmlPullParser.START_TAG, null, "pubDate");
+            String pubDate = readText(parser);
+            parser.require(XmlPullParser.END_TAG, null, "pubDate");
+            return pubDate;
+        }
+        private String readAuthor(XmlPullParser parser) throws IOException, XmlPullParserException {
+            parser.require(XmlPullParser.START_TAG, null, "author");
+            String author = readText(parser);
+            parser.require(XmlPullParser.END_TAG, null, "author");
+            return author;
+        }
         /**
          * call readText and parse the text between "description" tags to String description
          * @param parser
@@ -285,7 +299,9 @@ public class CBCNewsActivity extends AppCompatActivity {
          * source: https://android.googlesource.com/platform/frameworks/base.git/+/master/samples/training/network-usage/src/com/example/android/networkusage/StackOverflowXmlParser.java
          */
         private String readDescription(XmlPullParser parser) throws IOException, XmlPullParserException {
+
             parser.require(XmlPullParser.START_TAG, null, "description");
+
             String description = readText(parser);
             parser.require(XmlPullParser.END_TAG, null, "description");
             return description;
@@ -357,11 +373,19 @@ public class CBCNewsActivity extends AppCompatActivity {
                     if (name.equals("link")) {
                         tempLink = readLink(parser);
                     }
+                    if (name.equals("pubDate")) {
+                        tempPubDate = readPubDate(parser);
+                    }
+                    if (name.equals("author")) {
+                        tempAuthor = readAuthor(parser);
+                    }
                     if (name.equals("description")) {
                         tempDescription = readDescription(parser);
-                        newsList.add(new CBCNewsData(tempTitle, tempLink, tempDescription));
+                        //newsList.add(new CBCNewsData(tempTitle, tempLink, tempDescription,));
+                        newsList.add(new CBCNewsData(tempTitle, tempLink, tempDescription,tempPubDate,tempAuthor));
                         progressBar.setProgress(75);
                     }
+
                 }
                 stream.close();
             } catch (XmlPullParserException | IOException e) {
