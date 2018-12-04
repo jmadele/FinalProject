@@ -34,9 +34,9 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/cbc_toolbar"
-        android:layout_width="33dp"
+        android:layout_width="40dp"
         android:layout_height="50dp"
-        android:layout_toEndOf="@+id/CBC_SearchNews" >
+        android:layout_alignParentRight="true" >
     </android.support.v7.widget.Toolbar>
 
 

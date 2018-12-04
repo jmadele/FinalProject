@@ -22,7 +22,7 @@
         <activity android:name=".CBCNewsActivity"
             android:theme="@style/CBCNewsAppTheme" >
         </activity>
-
+        <activity android:name=".OCTranspo" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".FoodNutrition"></activity>
         <activity android:name=".CBCNewsContent"></activity>
         <activity android:name=".CBCNewsStat"></activity>

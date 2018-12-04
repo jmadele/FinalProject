@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private static final String ACTIVITY_NAME ="MainActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
