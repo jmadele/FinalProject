@@ -416,6 +416,7 @@ public class OCTranspo extends AppCompatActivity {
                 //check if number is in the station list already
                 for(String route : routes){
                     if (stationInput.getText().toString().equals(route.substring(2, route.length()))){
+
                         Log.i("MSG","it is here now" );
 
                         Log.i("STATION1", stationInput.getText().toString());
