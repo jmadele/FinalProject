@@ -1,20 +1,12 @@
 package com.example.minjia.finalproject;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -59,7 +51,7 @@ public class CBCNewsContent extends Activity {
         descView.loadDataWithBaseURL(null, description, "text/html", "utf-8", null);
 
         //source:https://stackoverflow.com/questions/24261224/android-open-url-onclick-certain-button
-        //clicking on the link will bring you to the website of the news
+        //clicking on the link will open the website of the news
         linkView.setOnClickListener(view->{
             Intent intentLink = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
             startActivity(intentLink);

@@ -28,6 +28,7 @@ public class CBCNewsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         bundle = this.getArguments();
+        //if bundle is not null, put news article text into the bundle
         if(bundle!=null){
             //newsLink=bundle.getString("link");
             newsDescription = bundle.getString("desc");
@@ -35,6 +36,14 @@ public class CBCNewsFragment extends Fragment {
             id = bundle.getLong("id");
         }
     }
+
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view of layout CBC_stats
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         //inflate the layout for this fragment
