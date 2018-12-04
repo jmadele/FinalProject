@@ -3,6 +3,7 @@ package com.example.minjia.finalproject;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Movie;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -67,8 +68,9 @@ public class CBCNewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cbcnews);
+        //instantiate newsList as an ArrayList
         newsList = new ArrayList<>();
-        //instantiate the progress bar and set it as visible
+        //instantiate the progress bar
         progressBar = findViewById(R.id.CBC_progressBar);
 
         titleText = findViewById(R.id.News_title);
@@ -77,8 +79,8 @@ public class CBCNewsActivity extends AppCompatActivity {
         //linkText=findViewById(R.id.News_link);
 
         //get a reference to the ListView
-        newsAdapter = new NewsAdapter(CBCNewsActivity.this);
         newsListView = findViewById(R.id.CBC_listView);
+        newsAdapter = new NewsAdapter(CBCNewsActivity.this);
         //to populate the listView with data
         newsListView.setAdapter(newsAdapter);
 
@@ -131,19 +133,38 @@ public class CBCNewsActivity extends AppCompatActivity {
      * @param mi menu item
      * @return boolean true
      */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem mi) {
         int id = mi.getItemId();
         switch (id) {
+            //clicking Bus icon to access OCTranspo activity
+            case R.id.CBC_BusItem:
+                Toast.makeText(getApplicationContext(), "switching to OCTranspo APP", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CBCNewsActivity.this, OCTranspo.class);
+                startActivity(intent);
+                break;
+            //clicking Food icon to access Food activity
+            case R.id.CBC_FoodItem:
+                Toast.makeText(getApplicationContext(), "switching to Food Nutrition APP", Toast.LENGTH_SHORT).show();
+                Intent intentFood = new Intent(CBCNewsActivity.this, FoodNutrition.class);
+                startActivity(intentFood);
+                break;
+            //clicking Movie icon to access Movie activity
+            case R.id.CBC_MovieItem:
+                Toast.makeText(getApplicationContext(), "switching to Movie APP", Toast.LENGTH_SHORT).show();
+                Intent intentMovie = new Intent(CBCNewsActivity.this, Movie.class);
+                startActivity(intentMovie);
+                break;
+
             /**
-             * when clicking on HelpItem, a dialog will show
+             * when clicking on Instructions, a dialog will show
              */
-            case R.id.CBC_HelpItem: {
+            case R.id.CBC_InstructionItem: {
                 builder = new AlertDialog.Builder(CBCNewsActivity.this);
-                builder.setTitle("Help");
-                builder.setPositiveButton("Click for help", (dialog, id1) ->
-                        Toast.makeText(getApplicationContext(), "Click title for more details, then click the link to view the website",
-                                Toast.LENGTH_SHORT).show());
+                builder.setTitle("Instructions");
+                builder.setMessage("Click news title for more details, then click the link to view the website. " +
+                        "To go to another activity, please click one icon in the toolbar" );
                 builder.setNegativeButton("cancel", (dialog, id12) -> dialog.dismiss());
                 dialog = builder.create();
                 dialog.show();
@@ -153,7 +174,12 @@ public class CBCNewsActivity extends AppCompatActivity {
              * when clicking on AboutItem, a message about the app and author will show
              */
             case R.id.CBC_AboutItem:
-                Toast.makeText(getApplicationContext(), "CBC News RSS Reader V1.0, Author: Min Jia", Toast.LENGTH_SHORT).show();
+                builder = new AlertDialog.Builder(CBCNewsActivity.this);
+                builder.setTitle("About")
+                        .setMessage("CBC News RSS Reader APP V1.0 \n Author: Min Jia")
+                        .setNegativeButton("cancel", (dialog, id12) -> dialog.dismiss());
+                dialog=builder.create();
+                dialog.show();
                 break;
         }
         return true;

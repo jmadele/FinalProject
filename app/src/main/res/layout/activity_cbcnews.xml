@@ -6,13 +6,22 @@
     android:focusableInTouchMode="true"
     tools:context=".CBCNewsActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/cbc_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimaryDark"
+        ></android.support.v7.widget.Toolbar>
+
     <EditText
         android:id="@+id/CBC_editText"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/CBC_listView"
 
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="-81dp"
         android:hint="@string/CBC_inputText"
         android:inputType="text" />
     <!--<ImageView-->
@@ -28,39 +37,33 @@
         android:id="@+id/CBC_SearchNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/CBC_editText"
+        android:layout_marginEnd="12dp"
         android:text="@string/CBC_SearchNews" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/cbc_toolbar"
-        android:layout_width="40dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true" >
-    </android.support.v7.widget.Toolbar>
-
-
-    <ProgressBar
-        android:id="@+id/CBC_progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="2dp"
-        android:background="@color/red" />
 
     <ListView
         android:id="@+id/CBC_listView"
         android:layout_width="match_parent"
-        android:layout_height="493dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="470dp"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="37dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="81dp"
         android:focusableInTouchMode="true"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
         android:scrollbars="vertical"
         android:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/CBC_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/red" />
 
 </RelativeLayout>
