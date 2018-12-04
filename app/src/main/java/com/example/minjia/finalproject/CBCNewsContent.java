@@ -17,13 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * CBCNewsContent activity creates details of the news
+ * CBCNewsContent activity shows details of the news
+ * author: Min Jia
  */
 
 public class CBCNewsContent extends Activity {
     private static final String ACTIVITY_NAME = "News Content Activity";
     Button btnSave;
-    String title, link,description;
+    String title, link,description, pubDate, author;
     private CBCDatabaseHelper dbHelper;
     private SQLiteDatabase db;
     private boolean isTablet;
@@ -37,6 +38,8 @@ public class CBCNewsContent extends Activity {
 
         Intent intent = getIntent();
         title = intent.getExtras().getString("title");
+        pubDate = intent.getExtras().getString("pubDate");
+        author = intent.getExtras().getString("author");
         link = intent.getExtras().getString("link");
         description = intent.getExtras().getString("desc");
         EditText titleView = findViewById(R.id.CBC_NewsContent);
@@ -45,7 +48,9 @@ public class CBCNewsContent extends Activity {
 
         titleView.setText(title);
         linkView.setText(link);
-
+        //source: https://stackoverflow.com/questions/20910405/android-webview-isnt-scrollable
+        //source: https://stackoverflow.com/questions/14374553/android-webview-loaddatawithbaseurl-how-load-images-from-assets
+        //load the webview with news description and make it scrollable
         descView.setVerticalScrollBarEnabled(true);
         descView.setHorizontalScrollBarEnabled(true);
         descView.loadDataWithBaseURL(null, description, "text/html", "utf-8", null);
@@ -56,7 +61,7 @@ public class CBCNewsContent extends Activity {
             Intent intentLink = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
             startActivity(intentLink);
         });
-//
+
         dbHelper = new CBCDatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
 
@@ -72,15 +77,20 @@ public class CBCNewsContent extends Activity {
         btnSave = findViewById(R.id.CBC_saveButton);
         //click the button and go to the fragment showing the news content
         btnSave.setOnClickListener((View view) -> {
-                    ContentValues contentValues = new ContentValues();
-                    contentValues.put(CBCDatabaseHelper.KEY_NEWS,title);
-                    db.insert(CBCDatabaseHelper.TABLE_NAME,null, contentValues);
+            //insert the current news into database
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(CBCDatabaseHelper.KEY_NEWS,title);
+            db.insert(CBCDatabaseHelper.TABLE_NAME,null, contentValues);
             /**
-             * if using tablet, the fragment will be called
-             * else if using phone, the CBCNewsStat activity will be called
+             * if using tablet, switch to the fragment
+             * else if using phone, call the CBCNewsStat activity
+             * source: https://stackoverflow.com/questions/14460109/android-fragmenttransaction-addtobackstack-confusion
              */
             if (isTablet) {
                         Bundle bundle = new Bundle();
+                        bundle.putString("title",title);
+                        bundle.putString("pubDate",pubDate);
+                        bundle.putString("author",author);
                         bundle.putString("desc", description);
                         bundle.putInt("position",position);
                         bundle.putLong("id",id);
@@ -97,6 +107,9 @@ public class CBCNewsContent extends Activity {
                     }else {
                             Intent intent2 = new Intent(CBCNewsContent.this, CBCNewsStat.class);
                             intent2.putExtra("desc",description);
+                            intent2.putExtra("pubDate",pubDate);
+                            intent2.putExtra("author",author);
+                            intent2.putExtra("title",title);
                             intent2.putExtra("position",position);
                             intent2.putExtra("id",id);
                         //    intent2.putExtra("link",link);

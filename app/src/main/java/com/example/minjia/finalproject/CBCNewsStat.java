@@ -9,8 +9,10 @@ public class CBCNewsStat extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cbcnews_stats);
 
-        //String title = getIntent().getExtras().getString("title");
+        String title = getIntent().getExtras().getString("title");
         String description = getIntent().getExtras().getString("desc");
+        String pubDate =getIntent().getExtras().getString("pubDate");
+        String author =getIntent().getExtras().getString("author");
         int position = getIntent().getExtras().getInt("position");
         long id =getIntent().getExtras().getLong("id");
 
@@ -18,6 +20,9 @@ public class CBCNewsStat extends Activity {
         CBCNewsFragment fragment = new CBCNewsFragment();
         fragment.isTablet=false;
         bundle.putString("desc",description);
+        bundle.putString("title",title);
+        bundle.putString("pubDate",pubDate);
+        bundle.putString("author",author);
         bundle.putLong("id",id);
         bundle.putInt("position",position);
         bundle.putBoolean("isTablet",false);
