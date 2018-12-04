@@ -7,9 +7,9 @@ import android.os.Bundle;
 This class is used to display the movie detail when it is the phone.
  */
 public class Movie_detail extends Activity {
-    Bundle bundle;
-    Movie_fragment movieFragment;
-    FragmentTransaction ft;
+    Bundle bundle; // Bundle with movie information
+    Movie_fragment movieFragment;//frame layout in the activity_movie_detail layout
+    FragmentTransaction ft;//FragmentTransaction
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

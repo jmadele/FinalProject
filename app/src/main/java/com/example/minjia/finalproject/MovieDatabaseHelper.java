@@ -7,18 +7,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 This class extend SQLiteOpenHelper, is used to create database and table.
  */
 public class MovieDatabaseHelper extends SQLiteOpenHelper{
-    private static String DATABASE_NAME = "MovieInformation.db";
+    private static String DATABASE_NAME = "MovieInformation.db"; // DATABASE  name
     private static int VERSION_NUM = 1;
-    public static final String KEY_ID = "ID";
-    public static final String KEY_TITLE = "Title";
-    public static final String KEY_ACTOR= "Actors";
-    public static final String KEY_YEAR = "Year";
-    public static final String KEY_RUNTIME = "Runtime";
-    public static final String KEY_RATING = "Rating";
-    public static final String KEY_PLOT = "Plot";
-    public static final String KEY_URL = "URL";
-    public static final String TABLE_NAME = "MovieTable";
-    public static final String KEY_IMAGE="MoviePoster";
+    public static final String KEY_ID = "ID";    // column ID
+    public static final String KEY_TITLE = "Title"; // table column title
+    public static final String KEY_ACTOR= "Actors"; // table column Actors
+    public static final String KEY_YEAR = "Year";  // Table columx Year
+    public static final String KEY_RUNTIME = "Runtime"; // Table column Runtime
+    public static final String KEY_RATING = "Rating"; //Table column Rating
+    public static final String KEY_PLOT = "Plot"; // Table column Plot
+    public static final String KEY_URL = "URL"; // Table column URL
+    public static final String TABLE_NAME = "MovieTable"; // TABLE NAME
+    public static final String KEY_IMAGE="MoviePoster"; // Table column image data.
 
     // This string is used to create table.
     private static final String DATABASE_CREATE = "create table " + TABLE_NAME
@@ -56,7 +56,7 @@ public class MovieDatabaseHelper extends SQLiteOpenHelper{
         this.getWritableDatabase().execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+KEY_ID
        +" = "+ key);
     }
-
+  // Delete the whole table
     public void delete(){
         this.getWritableDatabase().execSQL("DELETE FROM "+TABLE_NAME);
     }
