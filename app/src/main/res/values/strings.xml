@@ -27,7 +27,7 @@
 
 
     <string name="CBC_SearchNews">Search</string>
-    <string name="CBC_saveButton">More</string>
+    <string name="CBC_saveButton">SAVE</string>
     <string name="CBC_inputText">input to search</string>
     <string name="cbc_AboutItem">About</string>
     <string name="cbc_instruction">Instructions</string>
@@ -35,7 +35,7 @@
     <string name="cbc_FoodItem">Food Activity</string>
     <string name="cbc_BusItem">Bus Activity</string>
     <string name="cbc_MovieItem">Movie Activity</string>
-    <string name="CBC_otherActivities">Click for More Activities</string>
+
 
     <!-- octranspo strings -->
     <string name="title_activity_main">MainActivity</string>

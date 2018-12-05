@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * CBCNewsContent activity shows details of the news
@@ -28,8 +31,8 @@ public class CBCNewsContent extends Activity {
     private CBCDatabaseHelper dbHelper;
     private SQLiteDatabase db;
     private boolean isTablet;
-
-    String name;
+    Cursor cursor;
+    ArrayList <String> dbList;
     int position;
     long id;
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class CBCNewsContent extends Activity {
         author = intent.getExtras().getString("author");
         link = intent.getExtras().getString("link");
         description = intent.getExtras().getString("desc");
+
         EditText titleView = findViewById(R.id.CBC_NewsContent);
         TextView linkView = findViewById(R.id.CBC_NewsLink);
         WebView descView = findViewById(R.id.CBC_NewsDescription);
@@ -61,9 +65,34 @@ public class CBCNewsContent extends Activity {
             Intent intentLink = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
             startActivity(intentLink);
         });
-
+        //create an ArrayList dbList to hold data going to database
+        dbList = new ArrayList<String>();
         dbHelper = new CBCDatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
+        cursor =  db.rawQuery( "select * from " + CBCDatabaseHelper.TABLE_NAME, null );
+        int row = cursor.getCount();
+        //cursor.moveToFirst();
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+
+        }
+        while(!cursor.isAfterLast()){
+            String text = cursor.getString(cursor.getColumnIndexOrThrow(CBCDatabaseHelper.COLUMN_NEWS));
+           // long id = cursor.getLong(cursor.getColumnIndex(CBCDatabaseHelper.KEY_ID));
+            Log.i(ACTIVITY_NAME, "SQL ID:" + id);
+            Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + text);
+            dbList.add(text);
+
+            System.out.println("database testing: "+dbList);
+            cursor.moveToNext();
+        }
+        if(cursor.getCount()>0){
+            cursor.moveToFirst();
+
+        }
+        for(int i=0;i<cursor.getColumnCount();i++){
+            cursor.getColumnCount();
+        }
 
         FrameLayout frameLayout = findViewById(R.id.cbc_framelayout);
         if(frameLayout == null){
@@ -79,8 +108,15 @@ public class CBCNewsContent extends Activity {
         btnSave.setOnClickListener((View view) -> {
             //insert the current news into database
             ContentValues contentValues = new ContentValues();
-            contentValues.put(CBCDatabaseHelper.KEY_NEWS,title);
+            contentValues.put(CBCDatabaseHelper.COLUMN_NEWS,title);
             db.insert(CBCDatabaseHelper.TABLE_NAME,null, contentValues);
+            dbList.add(title);
+            //convert the dbList from ArrayList to a StringBuilder
+            StringBuilder sb = new StringBuilder();
+            for (String s : dbList) {
+                sb.append(s);
+                sb.append("\n");
+            }
             /**
              * if using tablet, switch to the fragment
              * else if using phone, call the CBCNewsStat activity
@@ -92,11 +128,12 @@ public class CBCNewsContent extends Activity {
                         bundle.putString("pubDate",pubDate);
                         bundle.putString("author",author);
                         bundle.putString("desc", description);
+                        //bundle.putString("link", link);
+                        bundle.putString("TITLE", String.valueOf(sb));
                         bundle.putInt("position",position);
                         bundle.putLong("id",id);
                         bundle.putBoolean("isTablet", true);
 
-                       // bundle.putString("link", link);
                         CBCNewsFragment fragment = new CBCNewsFragment();
                         fragment.setArguments(bundle);
 
@@ -106,14 +143,14 @@ public class CBCNewsContent extends Activity {
                         ft.commit();
                     }else {
                             Intent intent2 = new Intent(CBCNewsContent.this, CBCNewsStat.class);
-                            intent2.putExtra("desc",description);
-                            intent2.putExtra("pubDate",pubDate);
-                            intent2.putExtra("author",author);
-                            intent2.putExtra("title",title);
+//                            intent2.putExtra("desc",description);
+//                            intent2.putExtra("pubDate",pubDate);
+//                            intent2.putExtra("author",author);
+//                            intent2.putExtra("title",title);
                             intent2.putExtra("position",position);
                             intent2.putExtra("id",id);
-                        //    intent2.putExtra("link",link);
-                            startActivityForResult(intent2, 10);
+                            intent2.putExtra("TITLE", (CharSequence) sb);
+                            startActivity(intent2);
                             }
                 }
         );

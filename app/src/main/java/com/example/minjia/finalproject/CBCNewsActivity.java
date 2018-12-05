@@ -66,6 +66,7 @@ public class CBCNewsActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cbcnews);
 
@@ -88,8 +89,8 @@ public class CBCNewsActivity extends AppCompatActivity {
         //By clicking on a certain title in the listView, you can get the news details
         newsListView.setOnItemClickListener((parent, view, position, id) -> {
             progressBar.setProgress(50);
-
             Toast.makeText(getBaseContext(), "Going to the details of the news..." , Toast.LENGTH_SHORT).show();
+
             CBCNewsData newsData = newsAdapter.getItem(position);
             Intent intent = new Intent(CBCNewsActivity.this, CBCNewsContent.class);
             intent.putExtra("title", newsData.getNewsTitle());
