@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.minjia.finalproject">
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Final Project"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        >
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Movie_detail" />
-        <activity android:name=".Movie_statistics" />
-        <activity android:name=".Movie" />
-        <activity android:name=".Movie_import" />
-        <activity android:name=".OCTranspo"></activity>
-        <activity android:name=".CBCNewsActivity"></activity>
-
+        <activity android:name=".CBCNewsActivity"
+            android:label="CBC RSS Reader"
+            android:theme="@style/CBCNewsAppTheme" >
+        </activity>
+        <activity android:name=".OCTranspo" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".FoodNutrition"></activity>
+        <activity android:name=".CBCNewsContent"
+            android:label="CBC RSS Reader"></activity>
+        <activity android:name=".CBCNewsStat"
+            android:label="CBC RSS Reader"></activity>
     </application>
 
 </manifest>

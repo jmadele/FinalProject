@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <item
+        android:id="@+id/CBC_FoodItem"
+        android:icon="@drawable/cbc_food"
+        android:orderInCategory="101"
+        android:title="@string/cbc_FoodItem"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/CBC_BusItem"
+        android:icon="@drawable/cbc_bus"
+        android:orderInCategory="102"
+        android:title="@string/cbc_BusItem"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/CBC_MovieItem"
+        android:icon="@drawable/cbc_movie"
+        android:orderInCategory="103"
+        android:title="@string/cbc_MovieItem"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/cbc_toolbarmenu"
+        android:title="@string/cbc_help"
+        android:visible="true">
+        <menu>
+            <item
+                android:id="@+id/CBC_InstructionItem"
+                android:orderInCategory="104"
+                android:title="@string/cbc_instruction"
+                app:showAsAction="never" />
+            <item
+                android:id="@+id/CBC_AboutItem"
+                android:orderInCategory="104"
+                android:title="@string/cbc_AboutItem"
+                app:showAsAction="never" />
+        </menu>
+    </item>
+
+</menu>

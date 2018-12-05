@@ -21,4 +21,40 @@
     <string name="food_nutrition">食品营养</string>
     <string name="search_food">搜索食物</string>
     <string name="progress_bar_food">食物进度条</string>
+
+    <!-- octranspo strings -->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="help">帮助</string>
+    <string name="ok">同意</string>
+    <string name="about">关于</string>
+    <string name="myName">朱新纪创建</string>
+    <string name="version">版本</string>
+    <string name="transpoTitle">渥太华公交线路</string>
+    <string name="enterStation">输入车站号</string>
+    <string name="submitButton">提交</string>
+    <string name="busRoutes">公交线路:</string>
+    <string name="viewBusRoutes">查看公交线路</string>
+    <string name="cancel">取消</string>
+    <string name="numStations">已存的公交车站号:</string>
+    <string name="viewRoutes">浏览公交线路</string>
+    <string name="transpoAppDesc">选择公交线路，可查看终点站，经纬坐标，速度，出发时刻，调整时刻</string>
+    <string name="helpInfo">该APP可有4个不同的选择，选1可以查看说明，然后点击开始</string>
+    <string name="delete">取消</string>
+    <string name="stationnum">车站号码</string>
+    <string name="station">车站</string>
+    <string name="howTo">怎么使用</string>
+    <string name="statistics">统计显示</string>
+    <string name="stations">车站:</string>
+    <string name="transpoinst">首先，请输入一个4位数的公交车站号码。此号码将被保存并显示在列表中以供选择。
+            然后选择一个站号，以获取该站的公交路线列表。
+            最后，请选择巴士路线以获取更多详细信息（目的地，开始时间等）</string>
+
+
+    <string name="CBC_SearchNews">搜索</string>
+    <string name="CBC_saveButton">保存</string>
+    <string name="CBC_inputText">输入</string>
+    <string name="cbc_AboutItem">关于</string>
+    <string name="cbc_HelpItem">帮助</string>
+    <string name="cbc_toolbarmenu">工具栏</string>
+
 </resources>
