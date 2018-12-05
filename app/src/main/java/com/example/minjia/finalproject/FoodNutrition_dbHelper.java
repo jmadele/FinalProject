@@ -53,6 +53,10 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    /**
+     * to delete saved items
+     * @param key
+     */
     public void deleteItem(int key){
         this.getWritableDatabase().execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+KEY_ID
                 +" = "+ key);
