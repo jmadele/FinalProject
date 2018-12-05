@@ -52,9 +52,14 @@
 
     <string name="CBC_SearchNews">搜索</string>
     <string name="CBC_saveButton">保存</string>
-    <string name="CBC_inputText">输入</string>
+    <string name="CBC_inputText">输入查询</string>
     <string name="cbc_AboutItem">关于</string>
-    <string name="cbc_HelpItem">帮助</string>
     <string name="cbc_toolbarmenu">工具栏</string>
+    <string name="cbc_instruction">说明</string>
+    <string name="cbc_help">帮助</string>
+    <string name="cbc_FoodItem">食品营养</string>
+    <string name="cbc_BusItem">公交车查询</string>
+    <string name="cbc_MovieItem">电影信息</string>
+
 
 </resources>
