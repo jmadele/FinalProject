@@ -1,12 +1,5 @@
 <resources>
     <string name="app_name">FinalProject</string>
-    <string name="activity_Food">Food Nutrition Database</string>
-    <string name="activity_News">CBC News reader</string>
-    <string name="activity_Movie">Movie Information</string>
-    <string name="activity_Bus">OCTranspo Bus Route App</string>
-
-    <string name="Search">Search</string>
-    <string name="newsTitle"> CBC News Title</string>
     <string name="movie_detail_title">Movie Title: </string>
     <string name="movie_detail_actor">Main Actors:</string>
     <string name="movie_detail_year">Year: </string>
@@ -25,6 +18,21 @@
     <string name="movie_import_download">DownLoad</string>
     <string name="movie_return">Go Back</string>
 
+    <string name="activity_Food">Food Nutrition Database</string>
+    <string name="activity_News">CBC News reader</string>
+    <string name="activity_Movie">Movie Information</string>
+    <string name="activity_Bus">OCTranspo Bus Route App</string>
+    <string name="Search">Search</string>
+    <string name="newsTitle"> CBC News Title</string>
+    <string name="movie_help">Help</string>
+    <string name="movie_about">About</string>
+    <string name="movie_helpMessage">You are in the movie information activities. Click icons for other functions.</string>
+    <string name="movie_statistics_old">The oldest year: </string>
+    <string name="movie_statistics_new">The newest year: </string>
+    <string name="movie_statistics_averageY">The average year: </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="CBC_SearchNews">Search</string>
     <string name="CBC_saveButton">SAVE</string>
