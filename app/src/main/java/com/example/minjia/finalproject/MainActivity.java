@@ -15,22 +15,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    final Button movie_button=(Button) findViewById(R.id.MovieButton);
-    movie_button.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(MainActivity.this, Movie.class);
-            startActivity(intent);
-        }
-    });
-//        final Button Food = findViewById(R.id.foodButton);
-//        Food.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, FoodNutrition.class);
-//                startActivityForResult(intent, 50);
-//            }
-//        });
+        final Button Food = findViewById(R.id.foodButton);
+        Food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FoodNutrition.class);
+                startActivityForResult(intent, 50);
+            }
+        });
 
         final Button News = findViewById(R.id.NewsButton);
         News.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +32,7 @@ public class MainActivity extends Activity {
                 startActivityForResult(intent, 50);
             }
         });
+
 
 //
 //        final Button Movie = findViewById(R.id.MovieButton);
@@ -60,8 +53,25 @@ public class MainActivity extends Activity {
 //    });
 
 
+        final Button Movie = findViewById(R.id.MovieButton);
+        Movie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent = new Intent(MainActivity.this, Movie.class);
+               startActivityForResult(intent, 50);
+
+            }
+        });
 
 
+        final Button Bus = findViewById(R.id.BusButton);
+        Bus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, OCTranspo.class);
+                startActivityForResult(intent, 50);
+            }
+        });
     }
 
     public void onActivityResult ( int requestCode, int responseCode, Intent data){

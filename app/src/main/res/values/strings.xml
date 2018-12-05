@@ -17,6 +17,7 @@
     <string name="movie_statistics">View Statistics</string>
     <string name="movie_import_download">DownLoad</string>
     <string name="movie_return">Go Back</string>
+
     <string name="activity_Food">Food Nutrition Database</string>
     <string name="activity_News">CBC News reader</string>
     <string name="activity_Movie">Movie Information</string>
@@ -32,6 +33,65 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="CBC_SearchNews">Search</string>
+    <string name="CBC_saveButton">More</string>
+    <string name="CBC_inputText">input to search</string>
+    <string name="cbc_AboutItem">About</string>
+    <string name="cbc_instruction">Instructions</string>
+    <string name="cbc_help">Help</string>
+    <string name="cbc_FoodItem">Food Activity</string>
+    <string name="cbc_BusItem">Bus Activity</string>
+    <string name="cbc_MovieItem">Movie Activity</string>
+    <string name="CBC_otherActivities">Click for More Activities</string>
+
+    <!-- octranspo strings -->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="help">Help</string>
+    <string name="ok">Ok</string>
+    <string name="about">About</string>
+    <string name="myName">Created by: Xinji Zhu</string>
+    <string name="version">Version</string>
+    <string name="transpoTitle">OC Transpo Bus Routes App</string>
+    <string name="enterStation">Enter Station Number</string>
+    <string name="submitButton">Submit</string>
+    <string name="busRoutes">Bus Routes:</string>
+    <string name="viewBusRoutes">View Bus Routes</string>
+    <string name="cancel">Cancel</string>
+    <string name="numStations">Number of stations stored in Database:</string>
+    <string name="viewRoutes">View Routes</string>
+    <string name="movieAppInfo">Movie Information Selected \n\nView description,
+                                length, actors, ratings, genre and poster.</string>
+    <string name="transpoAppDesc">OC Transpo Route Info selected\n\n View destination, latitude,
+                    longitude, gps speed, start time and adjusted schedule time.</string>
+    <string name="cbcNewsAppDesc">Reader Intake Form Selected\n\nEnter new pages to view
+                    the news .</string>
+    <string name="foodNutritionAppDesc">User select the different food to see the detials of
+                    the food and its nutrition.</string>
+    <string name="helpInfo">This app includes 4 seperate activities, choose 1 to see description,
+                    then hit the launch button to start.</string>
+    <string name="delete">Delete</string>
+    <string name="food_nutrition">Food Nutrition</string>
+
+
+    <string name="station">Station</string>
+    <string name="howTo">How to use the application</string>
+    <string name="statistics">Statistics</string>
+    <string name="stations">Stations:</string>
+    <string name="transpoinst">To start, please enter a 4 digit bus station number.
+                    This number will be saved and appear in your list to choose from.
+                    Then choose a station number for a list of bus routes from that station.
+                    Finally, please choose a bus for more detailed information
+                    (destination, start time, etc.)</string>
+
+    <string name="search_food">searching:</string>
+    <string name="progress_bar_food">bar:</string>
+
+
+    <!-- movie strings -->
+
+
+    <!-- cbcnews strings -->
 
 
 </resources>
