@@ -488,7 +488,7 @@ public class OCTranspo extends AppCompatActivity {
         switch(mi.getItemId()){
             case R.id.home : finish();
                 break;
-            case R.id.activity_two : intent = new Intent(OCTranspo.this, Movie.class);
+            case R.id.activity_two : intent = new Intent(OCTranspo.this, Movie_import.class);
                 startActivity(intent);
                 break;
             case R.id.activity_three : intent = new Intent(OCTranspo.this, CBCNewsActivity.class);

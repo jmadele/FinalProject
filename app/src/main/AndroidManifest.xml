@@ -25,15 +25,12 @@
         </activity>
         <activity android:name=".OCTranspo" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".FoodNutrition"></activity>
-        <activity android:name=".Movie"
-            style="AppTheme"></activity>
+        <activity android:name=".Movie" style="AppTheme"></activity>
         <activity android:name=".Movie_detail"></activity>
         <activity android:name=".Movie_import"></activity>
 
-        <activity android:name=".CBCNewsContent"
-            android:label="CBC RSS Reader"></activity>
-        <activity android:name=".CBCNewsStat"
-            android:label="CBC RSS Reader"></activity>
+        <activity android:name=".CBCNewsContent"  android:label="CBC RSS Reader"></activity>
+        <activity android:name=".CBCNewsStat"  android:label="CBC RSS Reader"></activity>
     </application>
 
 </manifest>

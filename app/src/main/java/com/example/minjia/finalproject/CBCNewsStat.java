@@ -26,10 +26,10 @@ public class CBCNewsStat extends Activity {
         Bundle bundle = new Bundle();
         CBCNewsFragment fragment = new CBCNewsFragment();
         fragment.isTablet=false;
-//        bundle.putString("desc",description);
-//        bundle.putString("title",title);
-//        bundle.putString("pubDate",pubDate);
-//        bundle.putString("author",author);
+        bundle.putString("desc",description);
+        bundle.putString("title",title);
+        bundle.putString("pubDate",pubDate);
+        bundle.putString("author",author);
         bundle.putLong("id",id);
         bundle.putInt("position",position);
         bundle.putString ("TITLE",str);

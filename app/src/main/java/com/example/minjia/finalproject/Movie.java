@@ -198,8 +198,8 @@ public class Movie extends AppCompatActivity {
                 startActivity(intent);// If select "go to main", then go back to main.
                 break;
             case R.id.movie_bus:
-                //       Intent intent1 = new Intent(Movie.this, .class);
-                //      startActivity(intent1);
+                       Intent intent1 = new Intent(Movie.this, OCTranspo.class);
+                      startActivity(intent1);
                 break;
             case R.id.movie_cbc: // If click cbc icon, go to CBC activity
                 Intent intent2 = new Intent(Movie.this, CBCNewsActivity.class);

@@ -19,7 +19,6 @@
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/CBC_listView"
-
         android:layout_alignParentStart="true"
         android:layout_marginBottom="-81dp"
         android:hint="@string/CBC_inputText"
@@ -39,10 +38,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/CBC_editText"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="115dp"
         android:text="@string/CBC_SearchNews" />
 
-
+    <Button
+        android:id="@+id/CBC_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/CBC_editText"
+        android:text="@string/CBC_favorites" />
     <ListView
         android:id="@+id/CBC_listView"
         android:layout_width="match_parent"

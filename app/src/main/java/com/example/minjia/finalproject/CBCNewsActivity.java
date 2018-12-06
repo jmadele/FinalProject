@@ -3,6 +3,7 @@ package com.example.minjia.finalproject;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Movie;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -48,7 +49,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class CBCNewsActivity extends AppCompatActivity {
     private static final String ACTIVITY_NAME = "CBC News Reader";
     private ProgressBar progressBar;
-    private Button btnSearch;
+    private Button btnSearch,btnFavorite;
     protected ListView newsListView;
     private NewsAdapter newsAdapter;
     private TextView titleText;
@@ -57,6 +58,8 @@ public class CBCNewsActivity extends AppCompatActivity {
     private AlertDialog dialog;
     private ArrayList<CBCNewsData> newsList;
     private String tempTitle, tempLink, tempDescription, tempPubDate, tempAuthor;
+    CBCNewsData newsData;
+
 
     /**
      * onCreate()method is to create the activity
@@ -77,7 +80,9 @@ public class CBCNewsActivity extends AppCompatActivity {
 
         titleText = findViewById(R.id.News_title);
         editText = findViewById(R.id.CBC_editText);
+        btnFavorite=findViewById(R.id.CBC_favorites);
         editText.setShowSoftInputOnFocus(false);
+
         //linkText=findViewById(R.id.News_link);
 
         //get a reference to the ListView
@@ -90,8 +95,7 @@ public class CBCNewsActivity extends AppCompatActivity {
         newsListView.setOnItemClickListener((parent, view, position, id) -> {
             progressBar.setProgress(50);
             Toast.makeText(getBaseContext(), "Going to the details of the news..." , Toast.LENGTH_SHORT).show();
-
-            CBCNewsData newsData = newsAdapter.getItem(position);
+            newsData = newsAdapter.getItem(position);
             Intent intent = new Intent(CBCNewsActivity.this, CBCNewsContent.class);
             intent.putExtra("title", newsData.getNewsTitle());
             intent.putExtra("link", newsData.getNewsLink());
@@ -106,7 +110,7 @@ public class CBCNewsActivity extends AppCompatActivity {
         //click search for news titles that you want
         // this will show the news title that you want
         btnSearch.setOnClickListener(view -> {
-            Toast.makeText(getApplicationContext(), "searching.... ", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), "searching.... ", Toast.LENGTH_SHORT).show();
             for(int i=0;i<newsList.size();i++) {
                 if ((newsList.get(i).getNewsTitle()).contains(editText.getText().toString())) {
                     Snackbar.make(findViewById(R.id.CBC_SearchNews), newsList.get(i).getNewsTitle(), Snackbar.LENGTH_LONG).show();
@@ -115,6 +119,17 @@ public class CBCNewsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnFavorite.setOnClickListener(View->{
+            Intent intent = new Intent(CBCNewsActivity.this, CBCNewsStat.class);
+            newsData=new CBCNewsData();
+            intent.putExtra("title", newsData.getNewsTitle());
+            intent.putExtra("desc", newsData.getNewsDescription());
+            intent.putExtra("pubDate", newsData.getPubDate());
+            intent.putExtra("author", newsData.getAuthor());
+            startActivity(intent);
+        });
+
         Toolbar cbc_toolbar = findViewById(R.id.cbc_toolbar);
         setSupportActionBar(cbc_toolbar);
         //call AsynTask
@@ -156,8 +171,9 @@ public class CBCNewsActivity extends AppCompatActivity {
             //clicking Movie icon to access Movie activity
             case R.id.CBC_MovieItem:
                 Toast.makeText(getApplicationContext(), "switching to Movie APP", Toast.LENGTH_SHORT).show();
-                Intent intentMovie = new Intent(CBCNewsActivity.this, Movie.class);
-                startActivity(intentMovie);
+               // Intent intentMovie = new Intent(CBCNewsActivity.this, Movie.class);
+                Intent intentM = new Intent(CBCNewsActivity.this, com.example.minjia.finalproject.Movie.class);
+                startActivity(intentM);
                 break;
 
             /**

@@ -29,10 +29,10 @@ public class CBCNewsFragment extends Fragment {
         //if bundle is not null, put news article info into the bundle
         if(bundle!=null){
          //   newsLink=bundle.getString("link");
-//            title = bundle.getString("title");
-//            newsDescription = bundle.getString("desc");
-//            pubDate = bundle.getString("pubDate");
-//            author = bundle.getString("author");
+            title = bundle.getString("title");
+            newsDescription = bundle.getString("desc");
+            pubDate = bundle.getString("pubDate");
+            author = bundle.getString("author");
             position = bundle.getInt("position");
             savedTitle = bundle.getString("TITLE");
             id = bundle.getLong("id");
@@ -57,6 +57,7 @@ public class CBCNewsFragment extends Fragment {
         StringBuilder sBuilder= new StringBuilder();
         sBuilder.append(" Saved Titles: \n" + savedTitle);
         newsView.setText(sBuilder);
+
         //put the news titles into the view
 //        sBuilder.append("Title: "+ title+"\n")
 ////                .append(pubDate+"\n")

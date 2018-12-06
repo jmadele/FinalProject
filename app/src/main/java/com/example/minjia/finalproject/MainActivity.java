@@ -33,7 +33,6 @@ public class MainActivity extends Activity {
             }
         });
 
-
 //
 //        final Button Movie = findViewById(R.id.MovieButton);
 //        Movie.setOnClickListener(new View.OnClickListener() {
