@@ -1,20 +1,13 @@
 package com.example.minjia.finalproject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,8 +15,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.support.design.widget.Snackbar;
-import android.widget.Toolbar;
+
 
 public class FoodNutrition_StartActivity extends AppCompatActivity {
 
@@ -64,13 +56,9 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
         searchEditText.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 if (searchEditText.getText() != null && searchEditText.getText().length() > 0)
-
                     return true;
             }
-
-
             return false;
-
         });
 
 
@@ -86,7 +74,7 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
 
 
 //        if(FoodNutrition_dbHelper.getHelper(this).getAllDate().size()>0){
-//            Log.e("数据库判断", "有数据");
+//            Log.e("database test", "have data");
 //            FragmentManager fm = this.getSupportFragmentManager();
 //            FragmentTransaction ft = fm.beginTransaction();
 //            ft.addToBackStack(null);
@@ -137,9 +125,7 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
                          */
                         .setNegativeButton("OK", (dg, which) -> dg.dismiss())// cancel current operate
                         .create();
-
                 dialog.show();
-
                 break;
         }
         return true;
@@ -148,7 +134,6 @@ public class FoodNutrition_StartActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 }
 

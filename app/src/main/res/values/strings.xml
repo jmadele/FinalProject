@@ -78,8 +78,8 @@
     <string name="food_about">"Author: Lin Tao
                               Version: 1.1
                               About This Program: User can type a food's name to search in the database.
-                              Details of the food will be displayed. This food can be saved into a database
-                              Called favorate". User can click the toolbar to jump into other programs.</string>
+                              Details of the food will be displayed. This food can be saved into a database.
+                              User can click the toolbar to jump into other programs."</string>
     <string name="ENERC_KCAL">ENERC_KCAL</string>
     <string name="PROCNT">PROCNT</string>
     <string name="FAT">FAT</string>

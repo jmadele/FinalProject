@@ -1,6 +1,5 @@
 package com.example.minjia.finalproject;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,11 +11,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * this class is a fragment that store the saved favorate foods
+ */
 public class FoodNutrition_Fragement extends Fragment {
     private ListView favoriteListView;
     private List<Map<String, String>> favoriteList;
@@ -35,6 +35,13 @@ public class FoodNutrition_Fragement extends Fragment {
         favoriteList = FoodNutrition_dbHelper.getHelper(mainActivity).getAllDate();
     }
 
+    /**
+     * this method inflates its layout to make it appear on the screen
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,15 +54,12 @@ public class FoodNutrition_Fragement extends Fragment {
     }
 
 
-
-
     class MyAdapter extends ArrayAdapter<Map<String, String>>{
         int id;
 
         public MyAdapter(Context context, int resource,  List<Map<String, String>> food) {
 
             super(context, resource, food);
-
             id = resource;
         }
 

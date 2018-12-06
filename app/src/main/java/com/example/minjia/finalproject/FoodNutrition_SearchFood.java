@@ -22,6 +22,10 @@ import java.io.ByteArrayOutputStream;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * the main purpose of this class is to search in the food database to find detailed information
+ * about the specific food.
+ */
 public class FoodNutrition_SearchFood extends AppCompatActivity {
 
     ProgressBar progressBar;
@@ -30,9 +34,7 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
     TextView foodName,foodCalories,foodProcnt,foodFat, foodCHO, foodFabri;
     Button saveBtn, backBtn, toFavorite;
 
-
     protected static final String ACTIVITY_NAME = "Food Nutrition Search";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,10 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.food_detail_page);
 
+        //progressbar to display the progress of food search
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
-        // foodImage = (ImageView) findViewById(R.id.foodImage);
         foodName = (TextView) findViewById(R.id.foodName_Value1);
         foodCalories=(TextView)findViewById(R.id.enerc_value1);
         foodProcnt = (TextView)findViewById(R.id.PROCNT_Value1);
@@ -52,14 +54,13 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
         foodCHO = findViewById(R.id.CHOCDF_Value1);
         foodFabri = findViewById(R.id.fabric_Value1);
 
-
-
-
         String foodName = getIntent().getStringExtra("food");
         Log.e(TAG, "GET FOOD KEY WORD: "+ foodName +"  READY TO SEARCH");
         final FoodQuery foodQuery = new FoodQuery();
         foodQuery.execute(foodName);
 
+        //establish three buttons to save the food information, go back to previous menu, and
+        //display the last saved favorate foods
         saveBtn =findViewById(R.id.food_save_button1);
         saveBtn.setOnClickListener(e->foodQuery.saveToDB());
 
@@ -76,7 +77,10 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
 
     }
 
-
+    /**
+     * The purpose of AsyncTask is allowing the system to perform long lasting tasks/background operations
+     * and show the result on the UI thread without affecting the main thread
+     */
     public class FoodQuery extends AsyncTask<String, Integer, String> {
         String name;
         String label;
@@ -90,7 +94,6 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
 
         /**
          * connect to the url link, and grab the values from the web page using api app_id and app_key
-         *
          * @param args
          * @return
          */
@@ -101,7 +104,8 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
             FoodNutrition_HttpHandler sh = new FoodNutrition_HttpHandler();
             // Making a request to url and getting response
             publishProgress(10);
-            String url = "https://api.edamam.com/api/food-database/parser?&app_id=7a31a1cc&app_key=287e7c1c77ff233e0d46d08eab7a6e98&ingr=";
+            //String url = "https://api.edamam.com/api/food-database/parser?&app_id=7a31a1cc&app_key=287e7c1c77ff233e0d46d08eab7a6e98&ingr=";
+            String url = "https://api.edamam.com/api/food-database/parser?&app_id=3d29cf98&app_key=b5eab15b98063b66b72a3de34775169c&ingr=";
             String jsonStr = sh.makeServiceCall(url+name.toLowerCase());
             Log.e(TAG, "URL CONCAT DONE: " +url+args[0]);
             Log.e(TAG, "Response from url: " + jsonStr);
@@ -177,7 +181,6 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
 
         /**
          * bundle the values together to be used later
-         *
          * @return
          */
         public void saveToDB() {
@@ -188,11 +191,9 @@ public class FoodNutrition_SearchFood extends AppCompatActivity {
             cValues.put(FoodNutrition_dbHelper.KEY_CALORIES,ENRC_KCAL);
             cValues.put(FoodNutrition_dbHelper.KEY_PROCNT,PROCNT);
             cValues.put(FoodNutrition_dbHelper.KEY_FAT,FAT);
-
             cValues.put(FoodNutrition_dbHelper.KEY_CHOCDF,CHOCDF);
             cValues.put(FoodNutrition_dbHelper.KEY_FIBTG,FIBTG);
             database.insert(FoodNutrition_dbHelper.TABLE_NAME,"NullColumnName",cValues);
-
         }
     }
 }

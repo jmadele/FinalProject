@@ -1,13 +1,9 @@
 package com.example.minjia.finalproject;
 
-import android.app.Activity;
 import android.database.Cursor;
-import android.os.Bundle;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +26,7 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
     public static final String KEY_CHOCDF = "CHOCDF";
     public static final String KEY_FIBTG = "FIBTG";
     public static final String TABLE_NAME = "FoodNutritionTable";
-    // public static final String KEY_IMAGE="FoodNutritionPoster";
+
 
     // This string is used to create table.
     private static final String DATABASE_CREATE = "create table " + TABLE_NAME
@@ -52,12 +48,19 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
         return helper;
     }
 
+    /**
+     * this getAllData method will put the data into the table
+     * @return
+     */
 
     public List<Map<String, String>> getAllDate(){
         List<Map<String, String>> foods = new ArrayList<>();
         String query = "SELECT  * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
+
+        //use cursor to represents a 2 dimensional table of the food database.
         Cursor cursor = db.rawQuery(query, null);
+        //the Hashmap permits null values and the null key while implements map class
         Map<String, String> food = new HashMap<>();
         if (cursor.moveToFirst()) {
             do {
@@ -76,7 +79,7 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
     }
 
     /**
-     * To create table
+     * To create a table
      * @param db
      */
     @Override
@@ -84,23 +87,42 @@ public class FoodNutrition_dbHelper extends SQLiteOpenHelper{
         db.execSQL(DATABASE_CREATE);
     }
 
+    /**
+     * drop old table if newVersion exists
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
+    /**
+     * drop new table and downgrade to old table
+     * @param db
+     * @param oldVersion
+     * @param newVersion
+     */
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
+    /**
+     * deleteitem when needed if id avaliable
+     * @param key
+     */
     public void deleteItem(int key){
         this.getWritableDatabase().execSQL("DELETE FROM "+TABLE_NAME+" WHERE "+KEY_ID
                 +" = "+ key);
     }
 
+    /**
+     * delete from table when needed
+     */
     public void delete(){
         this.getWritableDatabase().execSQL("DELETE FROM "+TABLE_NAME);
     }

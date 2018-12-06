@@ -3,6 +3,9 @@ package com.example.minjia.finalproject;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * the purpose of this class is to
+ */
 public class FoodNutrition_ListItemsActivity extends Activity {
 
     @Override
