@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,23 +11,14 @@
         android:id="@+id/foodNutritionImage"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentTop="true"
         android:src="@drawable/food_nutrition"
-
         />
     <RelativeLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ListView
-            android:id="@+id/foodListView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/searchButton"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"/>
+
 
         <EditText
             android:id="@+id/searchEditText"
@@ -52,6 +43,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="@string/progress_bar_food" />
+
+        <FrameLayout
+            android:id="@+id/place_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/foodNutritionProgressBar"/>
+
 
     </RelativeLayout>
 </LinearLayout>

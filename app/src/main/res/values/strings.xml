@@ -32,7 +32,7 @@
     <string name="totalCalories">Total Calories</string>
     <string name="foodID">Food ID</string>
     <string name="foodName">Food Name</string>
-    <string name="foodImage">Food Image</string>
+    <string name="foodImage">Food Nutrition List</string>
     <string name="foodCalories">Food Calories</string>
     <string name="foodUri">Food URI</string>
 
@@ -74,4 +74,16 @@
     <!-- cbcnews strings -->
 
 
+    <!--NUTRITION FOOD-->
+    <string name="food_about">"Author: Lin Tao
+                              Version: 1.1
+                              About This Program: User can type a food's name to search in the database.
+                              Details of the food will be displayed. This food can be saved into a database
+                              Called favorate". User can click the toolbar to jump into other programs.</string>
+    <string name="ENERC_KCAL">ENERC_KCAL</string>
+    <string name="PROCNT">PROCNT</string>
+    <string name="FAT">FAT</string>
+    <string name="CHOCDF">CHOCDF</string>
+    <string name="FIBTG">FIBTG</string>
+    <string name="foodLabel">Food Label</string>
 </resources>

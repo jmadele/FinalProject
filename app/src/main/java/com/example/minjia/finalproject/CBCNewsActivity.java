@@ -78,17 +78,17 @@ public class CBCNewsActivity extends Activity {
         //initiate btn and perform click event on Search button
         btn = findViewById(R.id.Search);
         btn.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View view) {
-              Context context = getApplicationContext();
-               Toast.makeText(context,"In searching...message",Toast.LENGTH_SHORT).show();
+            @Override
+            public void onClick(View view) {
+                Context context = getApplicationContext();
+                Toast.makeText(context,"In searching...message",Toast.LENGTH_SHORT).show();
 //              String text = editText.getText().toString();
 //              newsList.add(text);
 //              newsAdapter.notifyDataSetChanged();
 //              editText.setText("");
-                                   }
+            }
 
-         });
+        });
         myList = findViewById(R.id.foodListView);
 
         ArrayAdapter<String> newsAdapter = new ArrayAdapter<String>
@@ -101,7 +101,7 @@ public class CBCNewsActivity extends Activity {
                 Toast.makeText(CBCNewsActivity.this, "item clicked: "+i +" "+ newsList.get(i),Toast.LENGTH_LONG).show();
             }
         });
-       // CBCNewsImage = findViewById(R.id.CBCNewsImage);
+        // CBCNewsImage = findViewById(R.id.CBCNewsImage);
         new NewsQuery().execute("String parameters");
     }
 
@@ -130,79 +130,79 @@ public class CBCNewsActivity extends Activity {
     }
     //inner class
     private class NewsQuery extends AsyncTask <String, Integer, String> {
-            private String type;
-            //bitmap used to store the picture of current news
-            private Bitmap bitmap;
-            private String iconName;
-            //run in UI before calling background method
-            @Override
-            protected void onPreExecute(){
-                super.onPreExecute();
-                progressBar.setVisibility(View.VISIBLE);
+        private String type;
+        //bitmap used to store the picture of current news
+        private Bitmap bitmap;
+        private String iconName;
+        //run in UI before calling background method
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String doInBackground(String ...args){
+            InputStream stream;
+            //check network connection
+            URL url = null;
+            ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
+            if(networkInfo != null&& networkInfo.isConnected()){
+                Log.i(ACTIVITY_NAME, "Device is connecting to the network");
+            }else {
+                Log.i(ACTIVITY_NAME,"Device is not connecting to network");
             }
+            try {
+                //set up the connection and get input stream
+                url = new URL("https://www.cbc.ca/cmlink/rss-world");
 
-            @Override
-            protected String doInBackground(String ...args){
-                InputStream stream;
-                //check network connection
-                URL url = null;
-                ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setReadTimeout(10000 /* milliseconds */);
+                conn.setConnectTimeout(15000 /* milliseconds */);
+                conn.setRequestMethod("GET");
+                conn.setDoInput(true);
+                Log.d(ACTIVITY_NAME,"Connecting with URL...");
 
-                NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
-                if(networkInfo != null&& networkInfo.isConnected()){
-                    Log.i(ACTIVITY_NAME, "Device is connecting to the network");
-                }else {
-                    Log.i(ACTIVITY_NAME,"Device is not connecting to network");
+                conn.connect();
+                stream = conn.getInputStream();
+                Log.d(ACTIVITY_NAME,"Reading rss. Stream is: " + stream);
+
+                //instantiate the XmlPullParser
+                XmlPullParser parser = Xml.newPullParser();
+                parser.setInput(stream,null);
+                parser.nextTag();
+
+                while(parser.next()!=XmlPullParser.END_DOCUMENT){
+                    //if the current event isn't a start_tag, it throws an exception
+                    if(parser.getEventType()!= XmlPullParser.START_TAG){
+                        throw new IllegalStateException();
+                    }
+
+                    if(parser.getName().equals("channel")) {
+                        iconName = parser.getAttributeValue(null, "icon");
+                    }
+                    if(parser.getName().equals("title")){
+                        type = parser.getAttributeValue(null,"story");
+                        publishProgress(50);
+                        SystemClock.sleep(500);
+                    }
+
                 }
-                try {
-                    //set up the connection and get input stream
-                    url = new URL("https://www.cbc.ca/cmlink/rss-world");
-
-                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                    conn.setReadTimeout(10000 /* milliseconds */);
-                    conn.setConnectTimeout(15000 /* milliseconds */);
-                    conn.setRequestMethod("GET");
-                    conn.setDoInput(true);
-                    Log.d(ACTIVITY_NAME,"Connecting with URL...");
-
-                    conn.connect();
-                    stream = conn.getInputStream();
-                    Log.d(ACTIVITY_NAME,"Reading rss. Stream is: " + stream);
-
-                    //instantiate the XmlPullParser
-                    XmlPullParser parser = Xml.newPullParser();
-                    parser.setInput(stream,null);
-                    parser.nextTag();
-
-                    while(parser.next()!=XmlPullParser.END_DOCUMENT){
-                        //if the current event isn't a start_tag, it throws an exception
-                        if(parser.getEventType()!= XmlPullParser.START_TAG){
-                            throw new IllegalStateException();
-                        }
-
-                        if(parser.getName().equals("channel")) {
-                            iconName = parser.getAttributeValue(null, "icon");
-                        }
-                        if(parser.getName().equals("title")){
-                            type = parser.getAttributeValue(null,"story");
-                            publishProgress(50);
-                            SystemClock.sleep(500);
-                        }
-
+                conn.disconnect();
+                String imageFile = iconName + ".png";
+                if(fileExistence(imageFile)){
+                    FileInputStream fileInput = null;
+                    try{
+                        fileInput = new FileInputStream(getBaseContext().getFileStreamPath(imageFile));
+                        // fileInput = openFileInput(imageFile);
+                    }catch(FileNotFoundException e){
+                        e.printStackTrace();
                     }
-                    conn.disconnect();
-                    String imageFile = iconName + ".png";
-                    if(fileExistence(imageFile)){
-                        FileInputStream fileInput = null;
-                        try{
-                            fileInput = new FileInputStream(getBaseContext().getFileStreamPath(imageFile));
-                            // fileInput = openFileInput(imageFile);
-                        }catch(FileNotFoundException e){
-                            e.printStackTrace();
-                        }
-                        bitmap = BitmapFactory.decodeStream(fileInput);
-                        Log.i(ACTIVITY_NAME,"image exists, read from file");
-                    }
+                    bitmap = BitmapFactory.decodeStream(fileInput);
+                    Log.i(ACTIVITY_NAME,"image exists, read from file");
+                }
 //                    else {
 //                        URL imageUrl =  new URL("http://openweathermap.org/img/w/" + iconName + ".png");
 //                        conn = (HttpURLConnection) imageUrl.openConnection();
@@ -214,16 +214,16 @@ public class CBCNewsActivity extends Activity {
 //                        outputStream.flush();
 //                        outputStream.close();
 //                    }
-                    Log.i(ACTIVITY_NAME,"File Name = " + imageFile );
-                    publishProgress(100);
+                Log.i(ACTIVITY_NAME,"File Name = " + imageFile );
+                publishProgress(100);
 
-                } catch (MalformedURLException e) {
-                    Log.e(ACTIVITY_NAME,e.getMessage());
-                } catch (IOException e) {
-                    Log.e(ACTIVITY_NAME,e.getLocalizedMessage());
-                } catch (XmlPullParserException parseException) {
-                    Log.e(ACTIVITY_NAME,parseException.getLocalizedMessage());
-                }
+            } catch (MalformedURLException e) {
+                Log.e(ACTIVITY_NAME,e.getMessage());
+            } catch (IOException e) {
+                Log.e(ACTIVITY_NAME,e.getLocalizedMessage());
+            } catch (XmlPullParserException parseException) {
+                Log.e(ACTIVITY_NAME,parseException.getLocalizedMessage());
+            }
             return "string passed to onPostExecute()";
         }
         //set the visibility of progressBar to visible and pass value to the progress

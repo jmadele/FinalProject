@@ -40,4 +40,15 @@
     <string name="newsTitle"> CBC News Title</string>
 
 
+    <!--NUTRITION FOOD-->
+    <string name="food_about">"名字： 陶琳
+                              版本：1.1
+                              介绍： 用户可以输入食品名称进行搜索，详细数据会展示在新的页面。
+                                    用户可以保存食品到喜欢的食物页面。用户可以从工具栏跳转其他程序"</string>
+    <string name="ENERC_KCAL">卡路里</string>
+    <string name="PROCNT">纤维</string>
+    <string name="FAT">脂肪</string>
+    <string name="CHOCDF">CHOCDF</string>
+    <string name="FIBTG">纤维素</string>
+    <string name="foodLabel">食物标签</string>
 </resources>
