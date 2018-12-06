@@ -30,6 +30,7 @@ public class CBCNewsStat extends Activity {
         bundle.putString("title",title);
         bundle.putString("pubDate",pubDate);
         bundle.putString("author",author);
+
         bundle.putLong("id",id);
         bundle.putInt("position",position);
         bundle.putString ("TITLE",str);

@@ -3,15 +3,16 @@ package com.example.minjia.finalproject;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Movie;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.util.Log;
@@ -103,24 +104,34 @@ public class CBCNewsActivity extends AppCompatActivity {
             intent.putExtra("pubDate", newsData.getPubDate());
             intent.putExtra("author", newsData.getAuthor());
             startActivity(intent);
-
         });
 
         btnSearch = findViewById(R.id.CBC_SearchNews);
         //click search for news titles that you want
-        // this will show the news title that you want
+        // this will show the news information
         btnSearch.setOnClickListener(view -> {
            // Toast.makeText(getApplicationContext(), "searching.... ", Toast.LENGTH_SHORT).show();
-            for(int i=0;i<newsList.size();i++) {
-                if ((newsList.get(i).getNewsTitle()).contains(editText.getText().toString())) {
-                    Snackbar.make(findViewById(R.id.CBC_SearchNews), newsList.get(i).getNewsTitle(), Snackbar.LENGTH_LONG).show();
-                    Spannable spannable = new SpannableString(newsList.get(i).getNewsTitle());
-                    titleText.setText(spannable);
+
+                for(int i=0;i<newsList.size();i++) {
+                    if ((newsList.get(i).getNewsTitle()).contains(editText.getText().toString())) {
+                        Snackbar.make(findViewById(R.id.CBC_SearchNews), newsList.get(i).getNewsTitle(), Snackbar.LENGTH_LONG).show();
+                        Spannable spannable = new SpannableString(newsList.get(i).getNewsTitle());
+                        titleText.setText(spannable);
+
+                        String[] count = String.valueOf(Html.fromHtml(newsList.get(i).getNewsDescription())).split("\\s+");
+                        builder = new AlertDialog.Builder(CBCNewsActivity.this);
+                        builder.setTitle("About the news");
+                        builder.setMessage("Headline: \n " + newsList.get(i).getNewsTitle() + "\n" + "publish date: "
+                                + newsList.get(i).getPubDate()
+                                + "\n Author: " + newsList.get(i).getAuthor() + "\n Total Word Count: " + count.length);
+                        builder.setNegativeButton("cancel", (dialog, id12) -> dialog.dismiss());
+                        dialog = builder.create();
+                        dialog.show();
                 }
             }
         });
 
-        btnFavorite.setOnClickListener(View->{
+        btnFavorite.setOnClickListener((View View) ->{
             Intent intent = new Intent(CBCNewsActivity.this, CBCNewsStat.class);
             newsData=new CBCNewsData();
             intent.putExtra("title", newsData.getNewsTitle());
@@ -129,7 +140,7 @@ public class CBCNewsActivity extends AppCompatActivity {
             intent.putExtra("author", newsData.getAuthor());
             startActivity(intent);
         });
-
+        //create toolbar with menus and menuitems
         Toolbar cbc_toolbar = findViewById(R.id.cbc_toolbar);
         setSupportActionBar(cbc_toolbar);
         //call AsynTask
@@ -172,7 +183,7 @@ public class CBCNewsActivity extends AppCompatActivity {
             case R.id.CBC_MovieItem:
                 Toast.makeText(getApplicationContext(), "switching to Movie APP", Toast.LENGTH_SHORT).show();
                // Intent intentMovie = new Intent(CBCNewsActivity.this, Movie.class);
-                Intent intentM = new Intent(CBCNewsActivity.this, com.example.minjia.finalproject.Movie.class);
+                Intent intentM = new Intent(CBCNewsActivity.this, Movie.class);
                 startActivity(intentM);
                 break;
 

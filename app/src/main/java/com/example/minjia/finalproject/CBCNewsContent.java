@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class CBCNewsContent extends Activity {
     Cursor cursor;
     ArrayList <String> dbList;
     int position;
+    String dbColTitle;
     long id;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,18 +72,16 @@ public class CBCNewsContent extends Activity {
         dbHelper = new CBCDatabaseHelper(this);
         db = dbHelper.getWritableDatabase();
         cursor =  db.rawQuery( "select * from " + CBCDatabaseHelper.TABLE_NAME, null );
-        int row = cursor.getCount();
-        //cursor.moveToFirst();
+
         if(cursor.getCount()>0){
             cursor.moveToFirst();
-
         }
         while(!cursor.isAfterLast()){
-            String text = cursor.getString(cursor.getColumnIndexOrThrow(CBCDatabaseHelper.COLUMN_NEWS));
+            dbColTitle = cursor.getString(cursor.getColumnIndexOrThrow(CBCDatabaseHelper.COLUMN_NEWS));
            // long id = cursor.getLong(cursor.getColumnIndex(CBCDatabaseHelper.KEY_ID));
             Log.i(ACTIVITY_NAME, "SQL ID:" + id);
-            Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + text);
-            dbList.add(text);
+            Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + dbColTitle);
+            //dbList.add(text);
 
             System.out.println("database testing: "+dbList);
             cursor.moveToNext();
@@ -110,13 +110,14 @@ public class CBCNewsContent extends Activity {
             ContentValues contentValues = new ContentValues();
             contentValues.put(CBCDatabaseHelper.COLUMN_NEWS,title);
             db.insert(CBCDatabaseHelper.TABLE_NAME,null, contentValues);
-            dbList.add(title);
+
+          //  dbList.add(title);
             //convert the dbList from ArrayList to a StringBuilder
-            StringBuilder sb = new StringBuilder();
-            for (String s : dbList) {
-                sb.append(s);
-                sb.append("\n");
-            }
+//            StringBuilder sb = new StringBuilder();
+//            for (String s : dbList) {
+//                sb.append(s);
+//                sb.append("\n");
+//            }
             /**
              * if using tablet, switch to the fragment
              * else if using phone, call the CBCNewsStat activity
@@ -129,7 +130,8 @@ public class CBCNewsContent extends Activity {
                         bundle.putString("author",author);
                         bundle.putString("desc", description);
                         //bundle.putString("link", link);
-                        bundle.putString("TITLE", String.valueOf(sb));
+                        bundle.putString("TITLE", dbColTitle);
+
                         bundle.putInt("position",position);
                         bundle.putLong("id",id);
                         bundle.putBoolean("isTablet", true);
@@ -149,14 +151,31 @@ public class CBCNewsContent extends Activity {
 //                            intent2.putExtra("title",title);
                             intent2.putExtra("position",position);
                             intent2.putExtra("id",id);
-                            intent2.putExtra("TITLE", (CharSequence) sb);
+                           // intent2.putExtra("TITLE", (CharSequence) sb);
+                            intent2.putExtra("TITLE",dbColTitle);
                             startActivity(intent2);
                             }
                 }
         );
-
     }
 
+
+    public void deleteNews(int position){
+        try {
+            dbList.remove(position);
+           //messageAdapter.notifyDataSetChanged();
+        }catch(SQLException e){
+
+        }
+    }
+    public void onActivityResult(int requestCode, int responseCode, Intent data){
+        if(requestCode == 10  && responseCode == -1) {
+            Bundle bundle = data.getExtras();
+            int position = bundle.getInt("position");
+            long id = bundle.getLong("id");
+            deleteNews(position);
+        }
+    }
 
     public void onDestroy() {
         super.onDestroy();

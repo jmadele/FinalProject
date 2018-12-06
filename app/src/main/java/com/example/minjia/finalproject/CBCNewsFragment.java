@@ -1,5 +1,6 @@
 package com.example.minjia.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.text.Html;
@@ -7,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * fragment, showing detailed description of CBC news
@@ -15,12 +18,13 @@ import android.widget.EditText;
  */
 public class CBCNewsFragment extends Fragment {
     View view;
-    EditText newsView;
+    TextView newsView;
     String newsDescription, title, pubDate, author, savedTitle;
     Bundle bundle;
     boolean isTablet;
     int position;
     long id;
+    Button deleteBtn;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -33,6 +37,7 @@ public class CBCNewsFragment extends Fragment {
             newsDescription = bundle.getString("desc");
             pubDate = bundle.getString("pubDate");
             author = bundle.getString("author");
+
             position = bundle.getInt("position");
             savedTitle = bundle.getString("TITLE");
             id = bundle.getLong("id");
@@ -51,33 +56,36 @@ public class CBCNewsFragment extends Fragment {
         //inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_cbcnews, container, false);
         newsView = view.findViewById(R.id.CBC_stats);
-        newsView.setShowSoftInputOnFocus(false);
+
         //convert the news description from HTML to text, removing the images and tabs
 //        String txt = String.valueOf(Html.fromHtml(newsDescription));
-        StringBuilder sBuilder= new StringBuilder();
-        sBuilder.append(" Saved Titles: \n" + savedTitle);
-        newsView.setText(sBuilder);
+//        StringBuilder sBuilder= new StringBuilder();
+//        sBuilder.append(" Saved Titles: \n" + savedTitle);
+        //newsView.setText(sBuilder);
+        newsView.setText(savedTitle);
 
-        //put the news titles into the view
-//        sBuilder.append("Title: "+ title+"\n")
-////                .append(pubDate+"\n")
-////                .append(author+"\n")
-////                .append("number of words in this article: " + countWords())
-////                .append(txt);
-
+        deleteBtn = view.findViewById(R.id.DeleteButton);
+        deleteBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (!isTablet) {
+                    Intent intent = new Intent(getActivity(), CBCNewsContent.class);
+                    intent.putExtra("position", position);
+                    intent.putExtra("id", id);
+                    getActivity().setResult(-1, intent);
+                    getActivity().finish();
+                } else {
+                    Log.i("tag", "trying to delete a message: " + position);
+                    CBCNewsContent cbc = (CBCNewsContent) getActivity();
+                    cbc.deleteNews(position);
+                    getFragmentManager().beginTransaction().remove(CBCNewsFragment.this).commit();
+                }
+            }
+        });
 
         Log.i("news description","testing in fragment",null);
         return view;
     }
 
-    /**
-     * count the number of words in the news description excluding the images
-     * @return int - number of words
-     * source:https://stackoverflow.com/questions/225337/how-do-i-split-a-string-with-any-whitespace-chars-as-delimiters
-     * \s removes white space and tabs in the text
-     */
-    public int countWords(){
-        String[] count = String.valueOf(Html.fromHtml(newsDescription)).split("\\s+");
-        return count.length;
-    }
+
 }

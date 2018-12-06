@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.Movie;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -488,7 +487,7 @@ public class OCTranspo extends AppCompatActivity {
         switch(mi.getItemId()){
             case R.id.home : finish();
                 break;
-            case R.id.activity_two : intent = new Intent(OCTranspo.this, Movie_import.class);
+            case R.id.activity_two : intent = new Intent(OCTranspo.this, Movie.class);
                 startActivity(intent);
                 break;
             case R.id.activity_three : intent = new Intent(OCTranspo.this, CBCNewsActivity.class);

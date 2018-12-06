@@ -37,9 +37,9 @@ public class CBCDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
     public Cursor getData() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME,null);
-        return res;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from "+TABLE_NAME,null);
+        return cursor;
     }
 
 }
