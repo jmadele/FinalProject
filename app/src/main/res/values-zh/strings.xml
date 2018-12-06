@@ -66,6 +66,7 @@
     <string name="cbc_FoodItem">食品营养</string>
     <string name="cbc_BusItem">公交车查询</string>
     <string name="cbc_MovieItem">电影信息</string>
+    <string name="CBC_favorites">收藏夹</string>
 
 
 </resources>
